@@ -3,7 +3,7 @@
 # ~~~~
 
 # Home page
-GET     /                           controllers.Application.index()
+GET     /                           zorglux.inominax.controllers.Inominax.index()
 
 # Inominax pages
 GET     /inominax                   zorglux.inominax.controllers.Inominax.index()
