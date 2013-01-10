@@ -1,4 +1,4 @@
-package zorglux.inominax;
+package zorglux.inominax.models;
 
 import static java.lang.Math.random;
 import static java.lang.Math.round;

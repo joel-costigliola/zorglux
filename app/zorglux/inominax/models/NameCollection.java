@@ -1,4 +1,4 @@
-package zorglux.inominax;
+package zorglux.inominax.models;
 
 
 import java.io.Serializable;
