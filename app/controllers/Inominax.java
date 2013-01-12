@@ -1,5 +1,11 @@
 package controllers;
 
+import static com.google.common.collect.Lists.newArrayList;
+
+import java.util.List;
+import java.util.Set;
+
+import models.NameGenerator;
 import models.NameGeneratorParameters;
 import play.data.Form;
 import play.mvc.Controller;
@@ -8,6 +14,7 @@ import views.html.index;
 
 public class Inominax extends Controller {
 
+   private static final List<String> EMPTY_SET = newArrayList();
    /**
     * Defines a form wrapping the NameGeneratorParameters class.
     */
@@ -15,10 +22,10 @@ public class Inominax extends Controller {
 
    public static Result index() {
       Form<NameGeneratorParameters> filledForm = generateNamesForm.bindFromRequest();
-      if (filledForm == null || filledForm.data().isEmpty()) {
+      if (filledForm.data().isEmpty()) {
          generateNamesForm = filledForm.fill(new NameGeneratorParameters());
       }
-      return ok(index.render(generateNamesForm));
+      return ok(index.render(generateNamesForm, EMPTY_SET));
    }
 
    /**
@@ -27,16 +34,14 @@ public class Inominax extends Controller {
    public static Result generateNames() {
       Form<NameGeneratorParameters> filledForm = generateNamesForm.bindFromRequest();
 
-      // Check if the username is valid
+      if (filledForm.hasErrors()) { return badRequest(index.render(filledForm, EMPTY_SET)); }
 
-      if (filledForm.hasErrors()) {
-         return badRequest(index.render(filledForm));
-      } else {
-         // NameGeneratorParameters nameGeneratorParameters = filledForm.get();
-         // System.out.println(nameGeneratorParameters.numberOfNamesToGenerate + " names to generate from " +
-         // nameGeneratorParameters.tokensCollection);
-         return ok(index.render(filledForm));
-      }
+      NameGeneratorParameters nameGeneratorParameters = filledForm.get();
+      NameGenerator nameGenerator = new NameGenerator(newArrayList("fil", "el", "sar", "dri", "ga", "len"));
+      System.out.println(nameGeneratorParameters.numberOfNamesToGenerate + " names to generate from " +
+            nameGeneratorParameters.tokensCollection);
+      Set<String> names = nameGenerator.generateNames(nameGeneratorParameters.numberOfNamesToGenerate);
+      return ok(index.render(filledForm, newArrayList(names)));
    }
 
 }

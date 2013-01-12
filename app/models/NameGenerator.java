@@ -12,7 +12,7 @@ import java.util.TreeSet;
 public class NameGenerator {
 
 	private int minNumberOfTokensInName = 2;
-	private int maxNumberOfTokensInName = 5;
+   private int maxNumberOfTokensInName = 3;
 	private String generatedNameStart = "";
 	private String generatedNameEnd = "";
 	private String mandatoryStringInGeneratedName = "";
@@ -25,6 +25,11 @@ public class NameGenerator {
 		this.maxNumberOfTokensInName = maxNumberOfTokensInName;
 		this.tokens = tokens;
 	}
+
+   public NameGenerator(List<String> tokens) {
+      super();
+      this.tokens = tokens;
+   }
 
 	private void checkMinMaxCoherence(int min, int max) {
 		throwExceptionIfFalse(min < max, "min number of tokens (" + min + ") > max number of tokens (" + max + ") !");

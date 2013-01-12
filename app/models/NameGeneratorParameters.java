@@ -18,4 +18,9 @@ public class NameGeneratorParameters {
       this(20);
    }
 
+   @Override
+   public String toString() {
+      return "NameGeneratorParameters[numberOfNamesToGenerate=" + numberOfNamesToGenerate + ", tokensCollection=" + tokensCollection + "]";
+   }
+
 }

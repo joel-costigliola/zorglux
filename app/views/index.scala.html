@@ -1,11 +1,10 @@
-@(generateNamesForm: Form[models.NameGeneratorParameters])
+@(generateNamesForm: Form[models.NameGeneratorParameters], names:List[String])
 
 @import helper._
 
 @main("Inominax - name generator") {
     
 <h2>Name generation parameters</h2>
-    
     
     @form(action = routes.Inominax.generateNames, args = 'id -> "generateNamesForm") {
         
@@ -24,8 +23,14 @@
             args = '_label -> "Choose tokens collection"
         )
         
-        <p class="buttons">
-            <input type="submit">
-        <p>
-        
-    }}
+        <input type="submit">
+    }
+    
+<h2>Generated names</h2>
+
+   @for(name <- names) {
+      <div class="generatedName">@name</div>
+   }
+
+}
+
