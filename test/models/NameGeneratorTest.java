@@ -1,13 +1,14 @@
-package zorglux.inominax.models;
+package models;
 
 import static com.google.common.collect.Lists.newArrayList;
 
 import static org.fest.assertions.Assertions.assertThat;
 
+import models.NameGenerator;
+
 import org.junit.Before;
 import org.junit.Test;
 
-import zorglux.inominax.models.NameGenerator;
 
 public class NameGeneratorTest {
 

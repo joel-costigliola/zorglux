@@ -1,4 +1,4 @@
-package zorglux.inominax.models;
+package models;
 
 import static com.google.common.collect.Lists.newArrayList;
 

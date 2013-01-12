@@ -3,11 +3,11 @@
 # ~~~~
 
 # Home page
-GET     /                           zorglux.inominax.controllers.Inominax.index()
+GET     /                           controllers.Inominax.index
 
 # Inominax pages
-GET     /inominax                   zorglux.inominax.controllers.Inominax.index()
-# POST    /inominax/names             zorglux.inominax.controllers.Inominax.addNameList()
+GET     /inominax                   controllers.Inominax.index()
+POST    /inominax                   controllers.Inominax.generateNames()
 
 # Map static resources from the /public folder to the /assets URL path
-GET     /assets/*file               controllers.Assets.at(path="/public", file)
+GET     /assets/*file               controllers.Assets.at(path="/public", file) 

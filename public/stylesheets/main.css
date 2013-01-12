@@ -70,22 +70,22 @@ body {
 }
 
 /* ===================
-    ALL: Orange Theme
+    ALL: Scroll Theme
    =================== */
 
 .header-container {
-    border-bottom: 20px solid #e44d26;
+    border-bottom: 20px solid #B37D47;
 }
 
 .footer-container,
 .main aside {
-    border-top: 20px solid #e44d26;
+    border-top: 20px solid #B37D47;
 }
 
 .header-container,
 .footer-container,
 .main aside {
-    background: #f16529;
+    background: #CC9966;
 }
 
 .title {
@@ -111,7 +111,7 @@ nav a {
     font-weight: bold;
 
     color: white;
-    background: #e44d26;
+    background: #B37D47;
 }
 
 nav a:hover,
@@ -158,14 +158,52 @@ nav a:hover {
    ========================================================================== */
 
 
+#generateButton {
+	display:block;
+}
+
+.smallNumberInput {
+	text-align:center;
+	width: 40px;
+}
 
 
+#generateNamesForm dd {
+    display: inline-block;
+}
+
+#generateNamesForm dd.info {
+    display: none;
+}
+
+#generateNamesForm dd.error {
+    margin-left: 10px;
+    font-size: 12px;
+    color: #c00;
+}
+
+#generateNamesForm label {
+    font-size: 14px;
+}
+
+#generateNamesForm dl {
+    background: #FAFAFA;
+    padding: 10px;
+}
+
+#generateNamesForm dl.error {
+    background: #FBDDE6;
+}
+
+#generateNamesForm dt {
+    display: inline-block;
+    width: 160px;
+}
 
 
-
-
-
-
+#numberOfNamesToGenerateInput {
+    width: 35px;
+}
 
 
 
