@@ -1,10 +1,15 @@
 package models;
 
 
+import com.google.common.collect.Lists;
+
 import java.io.Serializable;
+import java.util.List;
 import java.util.Set;
 import java.util.SortedSet;
 import java.util.TreeSet;
+
+import static com.google.common.collect.Lists.newArrayList;
 
 public class NameCollection implements Serializable {
 
@@ -55,5 +60,9 @@ public class NameCollection implements Serializable {
    public String toString() {
       return name;
    }
+
+    public static List<String> list() {
+        return newArrayList("Elf", "Orc", "Dwarf", "Human");
+    }
 
 }

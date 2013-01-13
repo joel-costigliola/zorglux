@@ -10,16 +10,14 @@
         
         @inputText(
             field = generateNamesForm("numberOfNamesToGenerate"),
-            args = '_label -> "number of names", 'id -> "numberOfNamesToGenerateInput"
+            '_label -> "number of names",
+            'id -> "numberOfNamesToGenerateInput",
+            '_error -> generateNamesForm("numberOfNamesToGenerate").error.map(_.withMessage("Choose a valid number"))
         )
         
         @select(
             field = generateNamesForm("tokensCollection"), 
-            options = options(
-                "elve" -> "Elve",
-                "orc" -> "Orc",
-                "human" -> "Human"
-            ),
+            options = options(NameCollection.list()),
             args = '_label -> "Choose tokens collection"
         )
         
