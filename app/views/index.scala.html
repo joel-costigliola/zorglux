@@ -1,34 +1,46 @@
-@(generateNamesForm: Form[models.NameGeneratorParameters], names:List[String])
+@(generateNamesForm: Form[models.NameGeneratorParameters], generatedNames:List[String])
 
 @import helper._
 
 @main("Inominax - name generator") {
-    
+
 <h2>Name generation parameters</h2>
-    
-    @form(action = routes.Inominax.generateNames, args = 'id -> "generateNamesForm") {
-        
+
+    @form(action = routes.Inominax.generateNames, args = 'class -> "namesForm") {
+
         @inputText(
             field = generateNamesForm("numberOfNamesToGenerate"),
             '_label -> "number of names",
             'id -> "numberOfNamesToGenerateInput",
             '_error -> generateNamesForm("numberOfNamesToGenerate").error.map(_.withMessage("Choose a valid number"))
         )
-        
+
         @select(
-            field = generateNamesForm("tokensCollection"), 
+            field = generateNamesForm("tokensCollection"),
             options = options(NameCollection.list()),
             args = '_label -> "Choose tokens collection"
         )
-        
-        <input type="submit">
-    }
-    
-<h2>Generated names</h2>
 
-   @for(name <- names) {
-      <div class="generatedName">@name</div>
-   }
+        <input type="submit" value="Generate">
+    }
+
+    <h2>Generated names</h2>
+
+    @for(name <- generatedNames) {
+        <div class="generatedName">@name</div>
+    }
+
+    <h2>Collections of saved names</h2>
+
+    <div class="namesForm">
+        @select(
+            field = generateNamesForm("selectedSavedNamesCollection"),
+            options = options(NameCollection.saved()),
+            args = '_label -> "Choose saved collection"
+        )
+    </div>
+
+    <div id="savedNamesCollection" class="savedNamesCollection"></div>
 
 }
 

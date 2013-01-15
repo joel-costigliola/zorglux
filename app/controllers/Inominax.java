@@ -11,6 +11,7 @@ import play.data.Form;
 import play.mvc.Controller;
 import play.mvc.Result;
 import views.html.index;
+import views.html.saved;
 
 public class Inominax extends Controller {
 
@@ -43,5 +44,17 @@ public class Inominax extends Controller {
       Set<String> names = nameGenerator.generateNames(nameGeneratorParameters.numberOfNamesToGenerate);
       return ok(index.render(filledForm, newArrayList(names)));
    }
+
+
+   /**
+    * Handle the form submission.
+    */
+   public static Result getSavedNamesOf(String namesCollection) {
+      if ("Zim".equals(namesCollection)) {
+         return ok(saved.render(newArrayList("Angus", "Sigfried", "Joachim")));
+      }
+      return ok(saved.render(newArrayList("Sarik", "Si-Shin", "Seldrick")));
+   }
+
 
 }

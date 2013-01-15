@@ -65,4 +65,8 @@ public class NameCollection implements Serializable {
         return newArrayList("Elf", "Orc", "Dwarf", "Human");
     }
 
+    public static List<String> saved() {
+        return newArrayList("Zim", "Joe", "Next");
+    }
+
 }

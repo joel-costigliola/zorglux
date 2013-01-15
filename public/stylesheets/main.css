@@ -152,34 +152,48 @@ nav a:hover {
 	border-radius: 5px;
 }
 
-#generateNamesForm dd {
+.savedName {
+	display: inline-block;
+	text-align: left;
+	background: #c6f5c9;
+	padding: 2px 8px;
+	margin: 2px 2px;
+	border-radius: 5px;
+}
+
+#savedNamesCollection {
+    background: #FAFAFA;
+	border-radius: 5px;
+}
+
+.namesForm dd {
 	display: inline-block;
 }
 
-#generateNamesForm dd.info {
+.namesForm dd.info {
 	display: none;
 }
 
-#generateNamesForm dd.error {
+.namesForm dd.error {
 	margin-left: 10px;
 	font-size: 12px;
 	color: #c00;
 }
 
-#generateNamesForm label {
+.namesForm label {
 	font-size: 14px;
 }
 
-#generateNamesForm dl {
+.namesForm dl {
 	background: #FAFAFA;
 	padding: 10px;
 }
 
-#generateNamesForm dl.error {
+.namesForm dl.error {
 	background: #FBDDE6;
 }
 
-#generateNamesForm dt {
+.namesForm dt {
 	display: inline-block;
 	width: 160px;
 }
