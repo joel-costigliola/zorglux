@@ -11,11 +11,10 @@ import java.util.TreeSet;
 
 import static com.google.common.collect.Lists.newArrayList;
 
-public class NameCollection implements Serializable {
+public class NameCollection extends StringCollection implements Serializable {
 
    private static final long serialVersionUID = -160520685358307201L;
 
-   private String name;
    private SortedSet<String> names;
 
    public NameCollection() {
@@ -23,17 +22,8 @@ public class NameCollection implements Serializable {
    }
 
    public NameCollection(String name) {
-      super();
-      this.name = name;
+      super(name);
       this.names = new TreeSet<String>();
-   }
-
-   public String getName() {
-      return name;
-   }
-
-   public void setName(String name) {
-      this.name = name;
    }
 
    public Set<String> getNames() {
@@ -62,10 +52,6 @@ public class NameCollection implements Serializable {
    }
 
     public static List<String> list() {
-        return newArrayList("Elf", "Orc", "Dwarf", "Human");
-    }
-
-    public static List<String> saved() {
         return newArrayList("Zim", "Joe", "Next");
     }
 

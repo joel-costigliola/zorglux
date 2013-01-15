@@ -4,7 +4,7 @@
 
 @main("Inominax - name generator") {
 
-<h2>Name generation parameters</h2>
+<h2>Names generation parameters</h2>
 
     @form(action = routes.Inominax.generateNames, args = 'class -> "namesForm") {
 
@@ -17,26 +17,31 @@
 
         @select(
             field = generateNamesForm("tokensCollection"),
-            options = options(NameCollection.list()),
+            options = options(TokenCollection.list()),
             args = '_label -> "Choose tokens collection"
         )
 
-        <input type="submit" value="Generate">
+        <div id="generateNamesButtonDiv">&nbsp;
+            <input type="submit" value="Generate" id="generateNamesButton">
+        </div>
     }
 
-    <h2>Generated names</h2>
+    @if(!generatedNames.isEmpty()) {
+        <h2>Generated names</h2>
+    }
 
     @for(name <- generatedNames) {
         <div class="generatedName">@name</div>
     }
 
-    <h2>Collections of saved names</h2>
+    <h2>Collections of list names</h2>
 
     <div class="namesForm">
+        <!-- TODO don't use generateNamesForm to set the select id -->
         @select(
             field = generateNamesForm("selectedSavedNamesCollection"),
-            options = options(NameCollection.saved()),
-            args = '_label -> "Choose saved collection"
+            options = options(NameCollection.list()),
+            args = '_label -> "Choose name collection"
         )
     </div>
 
