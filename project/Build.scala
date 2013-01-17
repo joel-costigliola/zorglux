@@ -8,11 +8,13 @@ object ApplicationBuild extends Build {
     val appVersion      = "1.0-SNAPSHOT"
 
     val appDependencies = Seq(
-      "com.google.guava" % "guava" % "13.0.1"
+      "com.google.guava" % "guava" % "13.0.1",
+      "org.jongo" % "jongo" % "0.3",
+      "org.mongodb" % "mongo-java-driver" % "2.10.1"
     )
 
     val main = PlayProject(appName, appVersion, appDependencies, mainLang = JAVA).settings(
-      // Add your own project settings here      
+      // Add your own project settings here
     )
 
 }

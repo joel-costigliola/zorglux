@@ -1,6 +1,10 @@
 package models;
 
+import org.jongo.marshall.jackson.id.Id;
+
 public class StringCollection {
+   @Id
+   protected String id;
    protected String name;
 
    public StringCollection(String name) {
