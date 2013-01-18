@@ -7,7 +7,7 @@ public class NameGeneratorParameters {
    @Required
    public int numberOfNamesToGenerate;
 
-   public String tokensCollection;
+   public String tokenCollection;
 
    public NameGeneratorParameters(int numberOfNamesToGenerate) {
       super();
@@ -20,7 +20,7 @@ public class NameGeneratorParameters {
 
    @Override
    public String toString() {
-      return "NameGeneratorParameters[numberOfNamesToGenerate=" + numberOfNamesToGenerate + ", tokensCollection=" + tokensCollection + "]";
+      return "NameGeneratorParameters[numberOfNamesToGenerate=" + numberOfNamesToGenerate + ", tokenCollection=" + tokenCollection + "]";
    }
 
 }

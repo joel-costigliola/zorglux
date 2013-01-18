@@ -7,9 +7,11 @@ import java.util.Set;
 
 import models.NameGenerator;
 import models.NameGeneratorParameters;
+import models.TokenCollection;
 import play.data.Form;
 import play.mvc.Controller;
 import play.mvc.Result;
+import repositories.AllTokenCollections;
 import views.html.index;
 import views.html.saved;
 
@@ -20,6 +22,8 @@ public class Inominax extends Controller {
     * Defines a form wrapping the NameGeneratorParameters class.
     */
    static Form<NameGeneratorParameters> generateNamesForm = form(NameGeneratorParameters.class);
+   private static AllTokenCollections allTokenCollections = new AllTokenCollections();
+   private static NameGenerator nameGenerator;
 
    public static Result index() {
       Form<NameGeneratorParameters> filledForm = generateNamesForm.bindFromRequest();
@@ -35,16 +39,22 @@ public class Inominax extends Controller {
    public static Result generateNames() {
       Form<NameGeneratorParameters> filledForm = generateNamesForm.bindFromRequest();
 
-      if (filledForm.hasErrors()) { return badRequest(index.render(filledForm, EMPTY_SET)); }
+      if (filledForm.hasErrors()) {
+         return badRequest(index.render(filledForm, EMPTY_SET));
+      }
 
       NameGeneratorParameters nameGeneratorParameters = filledForm.get();
-      NameGenerator nameGenerator = new NameGenerator(newArrayList("fil", "el", "sar", "dri", "ga", "len"));
+      TokenCollection tokenCollection = allTokenCollections.findByName(nameGeneratorParameters.tokenCollection);
+      if (tokenCollection != null) {
+         nameGenerator = new NameGenerator(tokenCollection);
+      } else {
+         nameGenerator = new NameGenerator(newArrayList("fil", "el", "sar", "dri", "ga", "len"));
+      }
       System.out.println(nameGeneratorParameters.numberOfNamesToGenerate + " names to generate from " +
-            nameGeneratorParameters.tokensCollection);
+         nameGeneratorParameters.tokenCollection);
       Set<String> names = nameGenerator.generateNames(nameGeneratorParameters.numberOfNamesToGenerate);
       return ok(index.render(filledForm, newArrayList(names)));
    }
-
 
    /**
     * Handle the form submission.

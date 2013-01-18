@@ -1,5 +1,8 @@
 package models;
 
+import com.google.common.collect.Lists;
+
+import static com.google.common.collect.Lists.newArrayList;
 import static java.lang.Math.random;
 import static java.lang.Math.round;
 import static zorglux.exception.ZorgluxException.throwExceptionIfFalse;
@@ -29,6 +32,11 @@ public class NameGenerator {
     public NameGenerator(List<String> tokens) {
         super();
         this.tokens = tokens;
+    }
+
+    public NameGenerator(TokenCollection tokenCollection) {
+        super();
+        useTokenSet(tokenCollection);
     }
 
     private void checkMinMaxCoherence(int min, int max) {
@@ -101,8 +109,8 @@ public class NameGenerator {
         return tokens.get(randomIndex);
     }
 
-    public void useTokenSet(TokenSet tokenSet) {
-        tokens = new ArrayList<String>(tokenSet.getTokens());
+    public void useTokenSet(TokenCollection tokenCollection) {
+        tokens = newArrayList(tokenCollection.getTokens());
     }
 
     public void generatedNameMustStartsWith(String startOfName) {
