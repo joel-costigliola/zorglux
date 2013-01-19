@@ -34,7 +34,7 @@ public class NameCollection extends StringCollection implements Serializable {
       names = tokens;
    }
 
-   public void addName(String... newNames) {
+   public void addNames(String... newNames) {
       for (String token : newNames) {
          names.add(token);
       }
@@ -55,4 +55,7 @@ public class NameCollection extends StringCollection implements Serializable {
         return newArrayList("Zim", "Joe", "Next");
     }
 
+   public int countNames() {
+      return names.size();
+   }
 }
