@@ -8,22 +8,22 @@ import static repositories.mongo.ZorgluxMongoClient.*;
 public class AllTokenCollections {
 
    public Iterable<TokenCollection> findAll() {
-      return tokenCollectionMongoCollection().find().as(TokenCollection.class);
+      return tokenCollectionDBCollection().find().as(TokenCollection.class);
    }
 
    public TokenCollection findByName(String name) {
-      return tokenCollectionMongoCollection().findOne("{name:#}", name).as(TokenCollection.class);
+      return tokenCollectionDBCollection().findOne("{name:#}", name).as(TokenCollection.class);
    }
 
    public long count() {
-      return tokenCollectionMongoCollection().count();
+      return tokenCollectionDBCollection().count();
    }
 
    public void save(TokenCollection tokenCollection) {
-      tokenCollectionMongoCollection().save(tokenCollection);
+      tokenCollectionDBCollection().save(tokenCollection);
    }
 
-   private MongoCollection tokenCollectionMongoCollection() {
-      return zorgluxJongoDB().getCollection(TokenCollection.class.getSimpleName());
+   private MongoCollection tokenCollectionDBCollection() {
+      return zorgluxDB().getCollection(TokenCollection.class.getSimpleName());
    }
 }
