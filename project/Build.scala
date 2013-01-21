@@ -1,5 +1,4 @@
 import sbt._
-import Keys._
 import PlayProject._
 
 object ApplicationBuild extends Build {
@@ -8,8 +7,10 @@ object ApplicationBuild extends Build {
     val appVersion      = "1.0-SNAPSHOT"
 
     val appDependencies = Seq(
-      "com.google.guava" % "guava" % "13.0.1",
+      "com.google.guava" % "guava" % "14.0-rc2",
       "org.jongo" % "jongo" % "0.3",
+      "com.lordofthejars" % "nosqlunit-mongodb" % "0.7.3" % "test",
+      "junit" % "junit" % "4.11" % "test",
       "org.mongodb" % "mongo-java-driver" % "2.10.1"
     )
 

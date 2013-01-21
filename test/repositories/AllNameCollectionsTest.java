@@ -1,8 +1,12 @@
 package repositories;
 
+import com.lordofthejars.nosqlunit.annotation.ShouldMatchDataSet;
+import com.lordofthejars.nosqlunit.annotation.UsingDataSet;
 import models.NameCollection;
 import org.junit.BeforeClass;
 import org.junit.Test;
+
+import java.net.UnknownHostException;
 
 import static org.fest.assertions.Assertions.assertThat;
 
@@ -12,6 +16,7 @@ public class AllNameCollectionsTest extends DatabaseTest {
 
    @BeforeClass
    public static void setupOnce() {
+      System.out.println("starting AllNameCollectionsTest");
       allNameCollections = new AllNameCollections();
    }
 
@@ -25,7 +30,7 @@ public class AllNameCollectionsTest extends DatabaseTest {
    }
 
    @Test
-   public void should_return_NameCollection_with_given_name() {
+   public void should_return_NameCollection_with_given_name() throws UnknownHostException {
       // Given a newly created NameCollection
       String name = "test-find-by-name";
       NameCollection newNameCollection = new NameCollection(name);
@@ -41,17 +46,23 @@ public class AllNameCollectionsTest extends DatabaseTest {
    }
 
    @Test
+   @UsingDataSet()
+   @ShouldMatchDataSet()
    public void should_insert_NameCollection() {
       long count = allNameCollections.count();
       // Given
-      NameCollection nameCollection = new NameCollection("test");
+      String name = "test";
+      NameCollection nameCollection = new NameCollection(name);
       nameCollection.addNames("name1", "name2", "name3");
 
       // When
       allNameCollections.save(nameCollection);
 
       // Then
+      NameCollection newlySavedNameCollection = allNameCollections.findByName(name);
       assertThat(allNameCollections.count()).isEqualTo(count + 1);
+      assertThat(newlySavedNameCollection.getName()).isEqualTo(name);
+      assertThat(newlySavedNameCollection.getNames()).contains("name1", "name2", "name3");
    }
 
    @Test

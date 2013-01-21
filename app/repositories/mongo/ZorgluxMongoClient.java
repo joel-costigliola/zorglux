@@ -13,7 +13,7 @@ import java.net.UnknownHostException;
 public class ZorgluxMongoClient {
 
    private static final String MONGODB_LOCALHOST = "mongodb://localhost";
-   private static final String ZORGLUX_TEST_DB = "zorglux-test";
+   public static final String ZORGLUX_TEST_DB = "zorglux-test";
    private static final String ZORGLUX_DB = "zorglux";
    private static Logger logger = LoggerFactory.getLogger(ZorgluxMongoClient.class);
    private static Jongo zorgluxDb;
@@ -72,6 +72,15 @@ public class ZorgluxMongoClient {
       db.authenticate(mongoURI.getUsername(), mongoURI.getPassword());
       logger.info("Connected to MongoHQ.");
       return db;
+   }
+
+   public static void main(String[] args) {
+      System.out.println("MONGO_HOME = " + System.getProperty("MONGO_HOME"));
+      System.out.println("MONGO_HOME = " + System.getenv("MONGO_HOME"));
+      System.out.println("JAVA_HOME = " + System.getProperty("JAVA_HOME"));
+      System.out.println("JAVA_HOME = " + System.getenv("JAVA_HOME"));
+      System.out.println("PATH = " + System.getProperty("PATH"));
+      System.out.println("PATH = " + System.getenv("PATH"));
    }
 
 }

@@ -8,10 +8,12 @@ import static org.fest.assertions.Assertions.assertThat;
 
 public class AllTokenCollectionsTest extends DatabaseTest {
 
+
    private static AllTokenCollections allTokenCollections;
 
    @BeforeClass
    public static void setupOnce() {
+      System.out.println("starting AllTokenCollectionsTest");
       allTokenCollections = new AllTokenCollections();
    }
 
