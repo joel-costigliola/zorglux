@@ -6,7 +6,7 @@ import org.junit.Test;
 
 import static org.fest.assertions.Assertions.assertThat;
 
-public class AllNameCollectionsTest {
+public class AllNameCollectionsTest extends DatabaseTest {
 
    private static AllNameCollections allNameCollections;
 
