@@ -1,4 +1,6 @@
-import play.*;
+import play.Application;
+import play.GlobalSettings;
+import play.Logger;
 import repositories.mongo.ZorgluxMongoClient;
 
 public class Global extends GlobalSettings {

@@ -47,7 +47,7 @@ public class ZorgluxMongoClient {
          try {
             return getMongoHqDb(mongoHqUrl);
          } catch (UnknownHostException e) {
-            logger.error("Fail to connect to Mongo HQ database with URL {}", mongoHqUrl);
+            logger.error("Fail to connect to Mongo HQ database with URL '{}'", mongoHqUrl);
             throw new RuntimeException(e);
          }
       }
@@ -56,17 +56,17 @@ public class ZorgluxMongoClient {
    }
 
    private static DB getLocalDb(String zorgluxDb) {
-      logger.info("Connecting to Mongo '{}' database '{}'", MONGODB_LOCALHOST, zorgluxDb);
+      logger.info("Connecting to Mongo '{}' using '{}' database", MONGODB_LOCALHOST, zorgluxDb);
       try {
          return new MongoClient(new MongoClientURI(MONGODB_LOCALHOST)).getDB(zorgluxDb);
       } catch (UnknownHostException e) {
-         logger.error("Fail to connect to Mongo {} on database : {}.", MONGODB_LOCALHOST, ZorgluxMongoClient.zorgluxDb);
+         logger.error("Fail to connect to Mongo '{}' using '{}' database", MONGODB_LOCALHOST, ZorgluxMongoClient.zorgluxDb);
          throw new RuntimeException(e);
       }
    }
 
    private static DB getMongoHqDb(String mongoHqUrl) throws UnknownHostException {
-      logger.info("Connecting to MongoHQ with URL : {}", mongoHqUrl);
+      logger.info("Connecting to MongoHQ with URL : '{}'", mongoHqUrl);
       MongoURI mongoURI = new MongoURI(mongoHqUrl);
       DB db = mongoURI.connectDB();
       db.authenticate(mongoURI.getUsername(), mongoURI.getPassword());
