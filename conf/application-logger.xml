@@ -17,6 +17,7 @@
 
     <logger name="play" level="INFO"/>
     <logger name="repositories" level="INFO"/>
+    <logger name="controllers" level="INFO"/>
 
     <root level="INFO">
         <appender-ref ref="STDOUT"/>

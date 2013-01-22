@@ -51,11 +51,11 @@ public class NameCollection extends StringCollection implements Serializable {
       return name;
    }
 
-    public static List<String> list() {
-        return newArrayList("Zim", "Joe", "Next");
-    }
-
    public int countNames() {
       return names.size();
+   }
+
+   public boolean hasNames() {
+      return !names.isEmpty();
    }
 }

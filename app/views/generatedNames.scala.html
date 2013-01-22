@@ -1,0 +1,11 @@
+@(nameCollection: NameCollection)
+
+@if(nameCollection.hasNames) {
+   @for(name <- nameCollection.getNames) {
+      <div class="savedName">@name</div>
+   }
+} else {
+   No saved names yet !
+}
+
+

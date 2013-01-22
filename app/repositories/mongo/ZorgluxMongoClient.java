@@ -12,10 +12,10 @@ import java.net.UnknownHostException;
 
 public class ZorgluxMongoClient {
 
+   private static Logger logger = LoggerFactory.getLogger(ZorgluxMongoClient.class);
    private static final String MONGODB_LOCALHOST = "mongodb://localhost";
    public static final String ZORGLUX_TEST_DB = "zorglux-test";
    private static final String ZORGLUX_DB = "zorglux";
-   private static Logger logger = LoggerFactory.getLogger(ZorgluxMongoClient.class);
    private static Jongo zorgluxDb;
 
    public static void testMode() {

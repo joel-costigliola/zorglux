@@ -1,52 +1,58 @@
-@(generateNamesForm: Form[models.NameGeneratorParameters], generatedNames:List[String])
-@import repositories.AllNameCollections
-@import com.google.common.collect.Lists;
+@(generateNamesForm: Form[models.NameGeneratorParameters], generatedNames: List[String])
 
 @import helper._
 
 @main("Inominax - name generator") {
 
-<h2>Names generation parameters</h2>
+   <h2>Names generation parameters</h2>
 
-    @form(action = routes.Inominax.generateNames, args = 'class -> "namesForm") {
+   @form(action = routes.Inominax.generateNames, args = 'class -> "namesForm") {
 
-        @inputText(
-            field = generateNamesForm("numberOfNamesToGenerate"),
-            '_label -> "number of names",
-            'id -> "numberOfNamesToGenerateInput",
-            '_error -> generateNamesForm("numberOfNamesToGenerate").error.map(_.withMessage("Choose a valid number"))
-        )
+      @inputText(
+         field = generateNamesForm("numberOfNamesToGenerate"),
+         '_label -> "number of names",
+         'id -> "numberOfNamesToGenerateInput",
+         '_error -> generateNamesForm("numberOfNamesToGenerate").error.map(_.withMessage("Choose a valid number"))
+      )
 
-        @select(
-            field = generateNamesForm("tokenCollection"),
-            options = options(TokenCollection.list()),
-            args = '_label -> "Choose tokens collection"
-        )
+      @select(
+         field = generateNamesForm("tokenCollection"),
+         options = options(TokenCollection.list()),
+         args = '_label -> "Choose tokens collection"
+      )
 
-        <div id="generateNamesButtonDiv">&nbsp;
-            <input type="submit" value="Generate" id="generateNamesButton">
-        </div>
-    }
+      <div id="generateNamesButtonDiv">
+      &nbsp;
+         <input type="submit" value="Generate" id="generateNamesButton">
+      </div>
+   }
 
-    @if(!generatedNames.isEmpty()) {
-        <h2>Generated names</h2>
-        @for(name <- generatedNames) {
-            <div class="generatedName">@name</div>
-        }
-    }
+   @if(!generatedNames.isEmpty()) {
+      <h2>Generated names</h2>
+      @for(name <- generatedNames) {
+         <div class="generatedName">@name</div>
+      }
+   }
 
-    <h2>Collections of list names</h2>
+   <h2>Collections of list names</h2>
 
-    <div class="namesForm">
-        <!-- TODO don't use generateNamesForm to set the select id -->
-        @select(
-            field = generateNamesForm("selectedSavedNamesCollection"),
-            options = options(Lists.newArrayList(AllNameCollections.findAllNameCollectionsName())),
-            args = '_label -> "Choose name collection"
-        )
-    </div>
+   <div class="namesForm">
+      <dl class=" " id="nameCollectionSelect_field">
+         <dt><label for="nameCollectionSelect">Choose name collection</label></dt>
+         <dd>
+            <select id="nameCollectionSelect" name="nameCollectionSelect">
+            @for(nameCollectionName <- Inominax.nameCollectionsNamesOptions) {
+               <option value="@nameCollectionName">@nameCollectionName</option>
+            }
+            </select>
+         </dd>
+         <dd>
+            <input type="button" value="new name collection" id="newNameCollection">
+         </dd>
+      </dl>
+   </div>
 
-    <div id="savedNamesCollection" class="savedNamesCollection"></div>
+   <div id="nameCollection" class="nameCollection"></div>
 
 }
 
