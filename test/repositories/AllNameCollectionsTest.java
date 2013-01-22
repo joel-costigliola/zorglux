@@ -12,21 +12,19 @@ import static org.fest.assertions.Assertions.assertThat;
 
 public class AllNameCollectionsTest extends DatabaseTest {
 
-   private static AllNameCollections allNameCollections;
 
    @BeforeClass
    public static void setupOnce() {
       System.out.println("starting AllNameCollectionsTest");
-      allNameCollections = new AllNameCollections();
    }
 
    @Test
    public void should_return_all_NameCollection() {
       // When
-      Iterable<NameCollection> nameCollections = allNameCollections.findAll();
+      Iterable<NameCollection> nameCollections = AllNameCollections.findAll();
 
       // Then
-      assertThat(nameCollections).hasSize((int) allNameCollections.count());
+      assertThat(nameCollections).hasSize((int) AllNameCollections.count());
    }
 
    @Test
@@ -35,10 +33,10 @@ public class AllNameCollectionsTest extends DatabaseTest {
       String name = "test-find-by-name";
       NameCollection newNameCollection = new NameCollection(name);
       newNameCollection.addNames("name1", "name2");
-      allNameCollections.save(newNameCollection);
+      AllNameCollections.save(newNameCollection);
 
       // When
-      NameCollection retrievedNameCollection = allNameCollections.findByName(name);
+      NameCollection retrievedNameCollection = AllNameCollections.findByName(name);
 
       // Then
       assertThat(retrievedNameCollection.getName()).isEqualTo(name);
@@ -49,20 +47,31 @@ public class AllNameCollectionsTest extends DatabaseTest {
    @UsingDataSet()
    @ShouldMatchDataSet()
    public void should_insert_NameCollection() {
-      long count = allNameCollections.count();
+      long count = AllNameCollections.count();
       // Given
       String name = "test";
       NameCollection nameCollection = new NameCollection(name);
       nameCollection.addNames("name1", "name2", "name3");
 
       // When
-      allNameCollections.save(nameCollection);
+      AllNameCollections.save(nameCollection);
 
       // Then
-      NameCollection newlySavedNameCollection = allNameCollections.findByName(name);
-      assertThat(allNameCollections.count()).isEqualTo(count + 1);
+      NameCollection newlySavedNameCollection = AllNameCollections.findByName(name);
+      assertThat(AllNameCollections.count()).isEqualTo(count + 1);
       assertThat(newlySavedNameCollection.getName()).isEqualTo(name);
       assertThat(newlySavedNameCollection.getNames()).contains("name1", "name2", "name3");
+   }
+
+   @Test
+   @UsingDataSet()
+   public void should_return_NameCollection_names() {
+
+      // Given DataSet, When
+      Iterable<String> allNameCollectionsName = AllNameCollections.findAllNameCollectionsName();
+
+      // Then
+      assertThat(allNameCollectionsName).containsOnly("toto", "tutu");
    }
 
    @Test
@@ -71,11 +80,11 @@ public class AllNameCollectionsTest extends DatabaseTest {
       NameCollection nameCollection = new NameCollection("test-add-names");
       nameCollection.addNames("name1", "name2");
       int countNames = nameCollection.countNames();
-      allNameCollections.save(nameCollection);
+      AllNameCollections.save(nameCollection);
 
       // When I add a new name
       nameCollection.addNames("newName");
-      allNameCollections.save(nameCollection);
+      AllNameCollections.save(nameCollection);
 
       // Then
       assertThat(nameCollection.getNames()).hasSize(countNames + 1).contains("newName");

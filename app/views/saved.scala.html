@@ -1,7 +1,11 @@
 @(names: List[String])
 
-@for(name <- names) {
-    <div class="savedName">@name</div>
+@if(!names.isEmpty()) {
+   @for(name <- names) {
+      <div class="savedName">@name</div>
+   }
+} else {
+   No saved names yet !
 }
 
 

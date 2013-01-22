@@ -1,0 +1,18 @@
+{
+    "NameCollection": [
+        {
+            "name": "toto",
+            "names": [
+                "toto1",
+                "toto2"
+            ]
+        },
+        {
+            "name": "tutu",
+            "names": [
+                "tutu1",
+                "tutu2"
+            ]
+        }
+    ]
+}

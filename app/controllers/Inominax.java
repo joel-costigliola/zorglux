@@ -5,19 +5,21 @@ import static com.google.common.collect.Lists.newArrayList;
 import java.util.List;
 import java.util.Set;
 
+import models.NameCollection;
 import models.NameGenerator;
 import models.NameGeneratorParameters;
 import models.TokenCollection;
 import play.data.Form;
 import play.mvc.Controller;
 import play.mvc.Result;
+import repositories.AllNameCollections;
 import repositories.AllTokenCollections;
 import views.html.index;
 import views.html.saved;
 
 public class Inominax extends Controller {
 
-   private static final List<String> EMPTY_SET = newArrayList();
+   private static final List<String> EMPTY_LIST = newArrayList();
    /**
     * Defines a form wrapping the NameGeneratorParameters class.
     */
@@ -30,7 +32,7 @@ public class Inominax extends Controller {
       if (filledForm.data().isEmpty()) {
          generateNamesForm = filledForm.fill(new NameGeneratorParameters());
       }
-      return ok(index.render(generateNamesForm, EMPTY_SET));
+      return ok(index.render(generateNamesForm, EMPTY_LIST));
    }
 
    /**
@@ -40,7 +42,7 @@ public class Inominax extends Controller {
       Form<NameGeneratorParameters> filledForm = generateNamesForm.bindFromRequest();
 
       if (filledForm.hasErrors()) {
-         return badRequest(index.render(filledForm, EMPTY_SET));
+         return badRequest(index.render(filledForm, EMPTY_LIST));
       }
 
       NameGeneratorParameters nameGeneratorParameters = filledForm.get();
@@ -57,13 +59,16 @@ public class Inominax extends Controller {
    }
 
    /**
-    * Handle the form submission.
+    * called when user select a NameCollection.
     */
-   public static Result getSavedNamesOf(String namesCollection) {
-      if ("Zim".equals(namesCollection)) {
+   public static Result getSavedNamesOf(String nameCollectionName) {
+      if ("Zim".equals(nameCollectionName)) {
          return ok(saved.render(newArrayList("Angus", "Sigfried", "Joachim")));
       }
-      return ok(saved.render(newArrayList("Sarik", "Si-Shin", "Seldrick")));
+      NameCollection nameCollection = AllNameCollections.findByName(nameCollectionName);
+      List<String> names = nameCollection == null ? EMPTY_LIST : newArrayList(nameCollection.getNames());
+      // TODO use directly nameCollection
+      return ok(saved.render(names));
    }
 
 

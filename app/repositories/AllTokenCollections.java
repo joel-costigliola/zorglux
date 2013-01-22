@@ -7,23 +7,23 @@ import static repositories.mongo.ZorgluxMongoClient.*;
 
 public class AllTokenCollections {
 
-   public Iterable<TokenCollection> findAll() {
+   public static Iterable<TokenCollection> findAll() {
       return tokenCollectionDBCollection().find().as(TokenCollection.class);
    }
 
-   public TokenCollection findByName(String name) {
+   public static TokenCollection findByName(String name) {
       return tokenCollectionDBCollection().findOne("{name:#}", name).as(TokenCollection.class);
    }
 
-   public long count() {
+   public static long count() {
       return tokenCollectionDBCollection().count();
    }
 
-   public void save(TokenCollection tokenCollection) {
+   public static void save(TokenCollection tokenCollection) {
       tokenCollectionDBCollection().save(tokenCollection);
    }
 
-   private MongoCollection tokenCollectionDBCollection() {
+   private static MongoCollection tokenCollectionDBCollection() {
       return zorgluxDB().getCollection(TokenCollection.class.getSimpleName());
    }
 }
