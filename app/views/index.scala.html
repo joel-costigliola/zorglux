@@ -6,7 +6,7 @@
 
    <h2>Names generation parameters</h2>
 
-   @form(action = routes.Inominax.generateNames, args = 'class -> "namesForm") {
+   @form(action = routes.Inominax.generateNames, args = 'class -> "namesForm", 'id -> "generateNamesForm") {
 
       @inputText(
          field = generateNamesForm("numberOfNamesToGenerate"),
@@ -27,12 +27,7 @@
       </div>
    }
 
-   @if(!generatedNames.isEmpty()) {
-      <h2>Generated names</h2>
-      @for(name <- generatedNames) {
-         <div class="generatedName">@name</div>
-      }
-   }
+   <div id="generatedNames" class="generatedNames"></div>
 
    <h2>Collections of list names</h2>
 

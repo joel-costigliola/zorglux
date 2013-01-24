@@ -1,11 +1,10 @@
-@(nameCollection: NameCollection)
+@(generatedNames: List[String])
 
-@if(nameCollection.hasNames) {
-   @for(name <- nameCollection.getNames) {
-      <div class="savedName">@name</div>
+@if(!generatedNames.isEmpty()) {
+   <h2>Generated names</h2>
+   @for(name <- generatedNames) {
+      <div class="generatedName">@name</div>
    }
-} else {
-   No saved names yet !
 }
 
 
