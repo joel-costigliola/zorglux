@@ -7,13 +7,17 @@ import com.mongodb.MongoURI;
 import org.jongo.Jongo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import util.ObjectsUtil;
 
 import java.net.UnknownHostException;
 
+import static util.ObjectsUtil.objects;
+
 public class ZorgluxMongoClient {
 
+   public static final int LOCAL_DB_TEST_PORT = 37017;
    private static Logger logger = LoggerFactory.getLogger(ZorgluxMongoClient.class);
-   private static final String MONGODB_LOCALHOST = "mongodb://localhost";
+   private static final String MONGODB_LOCALHOST = "localhost";
    public static final String ZORGLUX_TEST_DB = "zorglux-test";
    private static final String ZORGLUX_DB = "zorglux";
    private static Jongo zorgluxDb;
@@ -23,7 +27,7 @@ public class ZorgluxMongoClient {
          // we are already connected to test database
          return;
       }
-      zorgluxDb = new Jongo(getLocalDb(ZORGLUX_TEST_DB));
+      zorgluxDb = new Jongo(getLocalMongoClient(LOCAL_DB_TEST_PORT, ZORGLUX_TEST_DB));
    }
 
    public static void applicationMode() {
@@ -52,13 +56,14 @@ public class ZorgluxMongoClient {
          }
       }
       // use local database
-      return getLocalDb(ZORGLUX_DB);
+      return getLocalMongoClient(27017, ZORGLUX_DB);
    }
 
-   private static DB getLocalDb(String zorgluxDb) {
-      logger.info("Connecting to Mongo '{}' using '{}' database", MONGODB_LOCALHOST, zorgluxDb);
+   private static DB getLocalMongoClient(int port, String zorgluxDb) {
+      logger.info("Connecting to Mongo '{}:{}' using '{}' database", objects(MONGODB_LOCALHOST, port, zorgluxDb));
       try {
-         return new MongoClient(new MongoClientURI(MONGODB_LOCALHOST)).getDB(zorgluxDb);
+         return new MongoClient(MONGODB_LOCALHOST, port).getDB(zorgluxDb);
+         // return new MongoClient(new MongoClientURI(MONGODB_LOCALHOST)).getDB(zorgluxDb);
       } catch (UnknownHostException e) {
          logger.error("Fail to connect to Mongo '{}' using '{}' database", MONGODB_LOCALHOST, ZorgluxMongoClient.zorgluxDb);
          throw new RuntimeException(e);

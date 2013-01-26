@@ -1,5 +1,6 @@
 package repositories;
 
+import com.lordofthejars.nosqlunit.annotation.UsingDataSet;
 import models.TokenCollection;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -71,4 +72,17 @@ public class AllTokenCollectionsTest extends DatabaseTest {
       // Then
       assertThat(tokenCollection.getTokens()).hasSize(countTokens + 1).contains("newToken");
    }
+
+   @Test
+   @UsingDataSet()
+   public void should_return_TokenCollection_names() {
+
+      // Given DataSet, When
+      Iterable<String> allTokenCollectionsName = AllTokenCollections.findAllTokenCollectionsName();
+
+      // Then
+      assertThat(allTokenCollectionsName).containsOnly("dwarf", "elf");
+   }
+
+
 }

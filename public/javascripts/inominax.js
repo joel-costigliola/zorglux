@@ -4,6 +4,7 @@ function displayNameCollection(nameCollection) {
 
 function newNameCollection() {
     var name = window.prompt("Please enter the name of the collection", " names");
+    // TODO check that name is not already used, in that case just select it after notifying user of this existing collection name
     $.post('/inominax/' + encodeURIComponent(name), function () {
         $('#nameCollectionSelect').append('<option value="' + name + '" selected="selected">' + name + '</option>');
         // TODO : sort nameCollectionSelect options

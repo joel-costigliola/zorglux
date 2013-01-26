@@ -1,0 +1,18 @@
+{
+    "TokenCollection": [
+        {
+            "name": "dwarf",
+            "names": [
+                "fin",
+                "el"
+            ]
+        },
+        {
+            "name": "elf",
+            "names": [
+                "kar",
+                "zam"
+            ]
+        }
+    ]
+}

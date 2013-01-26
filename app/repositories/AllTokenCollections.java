@@ -1,7 +1,9 @@
 package repositories;
 
+import com.mongodb.DBObject;
 import models.TokenCollection;
 import org.jongo.MongoCollection;
+import org.jongo.ResultHandler;
 
 import static repositories.mongo.ZorgluxMongoClient.*;
 
@@ -25,5 +27,13 @@ public class AllTokenCollections {
 
    private static MongoCollection tokenCollectionDBCollection() {
       return zorgluxDB().getCollection(TokenCollection.class.getSimpleName());
+   }
+
+   public static Iterable<String> findAllTokenCollectionsName() {
+      return tokenCollectionDBCollection().find().fields("{name:1, _id:0}").sort("{name:1}")
+                .map(new ResultHandler<String>() {
+                   @Override
+                   public String map(DBObject result) { return (String) result.get("name"); }
+                });
    }
 }

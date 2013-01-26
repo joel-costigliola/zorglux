@@ -19,17 +19,16 @@ import java.util.List;
 import java.util.Set;
 
 import static com.google.common.collect.Lists.*;
+import static java.util.Collections.emptyList;
 
 public class Inominax extends Controller {
 
-   private static final List<String> EMPTY_LIST = newArrayList();
+   private static final Logger logger = LoggerFactory.getLogger(Inominax.class);
+   private static final List<String> EMPTY_LIST = emptyList();
    /**
     * Defines a form wrapping the NameGeneratorParameters class.
     */
-   static Form<NameGeneratorParameters> generateNamesForm = form(NameGeneratorParameters.class);
-   private static Logger logger = LoggerFactory.getLogger(Inominax.class);
-   private static AllTokenCollections allTokenCollections = new AllTokenCollections();
-   private static NameGenerator nameGenerator;
+   private static Form<NameGeneratorParameters> generateNamesForm = form(NameGeneratorParameters.class);
 
    public static Result index() {
       Form<NameGeneratorParameters> filledForm = generateNamesForm.bindFromRequest();
@@ -39,9 +38,6 @@ public class Inominax extends Controller {
       return ok(index.render(generateNamesForm, EMPTY_LIST));
    }
 
-   /**
-    * Handle the form submission.
-    */
    public static Result generateNames() {
       Form<NameGeneratorParameters> filledForm = generateNamesForm.bindFromRequest();
 
@@ -50,13 +46,14 @@ public class Inominax extends Controller {
       }
 
       NameGeneratorParameters nameGeneratorParameters = filledForm.get();
-      TokenCollection tokenCollection = allTokenCollections.findByName(nameGeneratorParameters.tokenCollection);
+      TokenCollection tokenCollection = AllTokenCollections.findByName(nameGeneratorParameters.tokenCollectionName);
+      NameGenerator nameGenerator;
       if (tokenCollection != null) {
          nameGenerator = new NameGenerator(tokenCollection);
       } else {
          nameGenerator = new NameGenerator(newArrayList("fil", "el", "sar", "dri", "ga", "len"));
       }
-      logger.info("{} names to generate from {}", nameGeneratorParameters.numberOfNamesToGenerate, nameGeneratorParameters.tokenCollection);
+      logger.info("{} names to generate from {}", nameGeneratorParameters.numberOfNamesToGenerate, nameGeneratorParameters.tokenCollectionName);
       Set<String> names = nameGenerator.generateNames(nameGeneratorParameters.numberOfNamesToGenerate);
       return ok(generatedNames.render(newArrayList(names)));
    }
@@ -70,6 +67,9 @@ public class Inominax extends Controller {
       return ok(nameCollectionTemplate.render(nameCollection));
    }
 
+   /**
+    * called when user select creates a new NameCollection.
+    */
    public static Result newNameCollection(String nameCollectionName) {
       NameCollection nameCollection = new NameCollection(nameCollectionName);
       AllNameCollections.save(nameCollection);
@@ -79,6 +79,10 @@ public class Inominax extends Controller {
 
    public static List<String> nameCollectionsNamesOptions() {
       return newArrayList(AllNameCollections.findAllNameCollectionsName());
+   }
+
+   public static List<String> tokenCollectionsNamesOptions() {
+      return newArrayList(AllTokenCollections.findAllTokenCollectionsName());
    }
 
 }

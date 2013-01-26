@@ -16,14 +16,13 @@
       )
 
       @select(
-         field = generateNamesForm("tokenCollection"),
-         options = options(TokenCollection.list()),
+         field = generateNamesForm("tokenCollectionName"),
+         options = options(Inominax.tokenCollectionsNamesOptions),
          args = '_label -> "Choose tokens collection"
       )
 
       <div id="generateNamesButtonDiv">
-      &nbsp;
-         <input type="submit" value="Generate" id="generateNamesButton">
+      &nbsp; <input type="submit" value="Generate" id="generateNamesButton">
       </div>
    }
 
