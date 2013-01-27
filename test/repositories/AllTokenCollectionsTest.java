@@ -2,29 +2,19 @@ package repositories;
 
 import com.lordofthejars.nosqlunit.annotation.UsingDataSet;
 import models.TokenCollection;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import static org.fest.assertions.Assertions.assertThat;
 
 public class AllTokenCollectionsTest extends DatabaseTest {
 
-
-   private static AllTokenCollections allTokenCollections;
-
-   @BeforeClass
-   public static void setupOnce() {
-      System.out.println("starting AllTokenCollectionsTest");
-      allTokenCollections = new AllTokenCollections();
-   }
-
    @Test
    public void should_return_all_TokenCollection() {
       // When
-      Iterable<TokenCollection> tokenCollections = allTokenCollections.findAll();
+      Iterable<TokenCollection> tokenCollections = AllTokenCollections.findAll();
 
       // Then
-      assertThat(tokenCollections).hasSize((int) allTokenCollections.count());
+      assertThat(tokenCollections).hasSize((int) AllTokenCollections.count());
    }
 
    @Test
@@ -33,10 +23,10 @@ public class AllTokenCollectionsTest extends DatabaseTest {
       String name = "test-find-by-name";
       TokenCollection newTokenCollection = new TokenCollection(name);
       newTokenCollection.addTokens("token1", "token2");
-      allTokenCollections.save(newTokenCollection);
+      AllTokenCollections.save(newTokenCollection);
 
       // When
-      TokenCollection retrievedTokenCollection = allTokenCollections.findByName(name);
+      TokenCollection retrievedTokenCollection = AllTokenCollections.findByName(name);
 
       // Then
       assertThat(retrievedTokenCollection.getName()).isEqualTo(name);
@@ -45,16 +35,38 @@ public class AllTokenCollectionsTest extends DatabaseTest {
 
    @Test
    public void should_insert_TokenCollection() {
-      long count = allTokenCollections.count();
+      long count = AllTokenCollections.count();
       // Given
       TokenCollection tokenCollection = new TokenCollection("test");
       tokenCollection.addTokens("1", "a", "z");
 
       // When
-      allTokenCollections.save(tokenCollection);
+      AllTokenCollections.save(tokenCollection);
 
       // Then
-      assertThat(allTokenCollections.count()).isEqualTo(count + 1);
+      assertThat(AllTokenCollections.count()).isEqualTo(count + 1);
+   }
+
+   @Test
+   @UsingDataSet()
+   public void should_remove_TokenCollection() {
+      // Given
+      assertThat(AllTokenCollections.findByName("elf")).isNotNull();
+      assertThat(AllTokenCollections.findByName("dwarf")).isNotNull();
+
+      // When
+      AllTokenCollections.remove("elf");
+      // Then
+      assertThat(AllTokenCollections.findByName("elf")).isNull();
+
+      // When
+      AllTokenCollections.remove("dwarf");
+      // Then
+      assertThat(AllTokenCollections.findByName("dwarf")).isNull();
+
+      // When
+      AllTokenCollections.remove("unknown");
+      // Then nothing wrong happen
    }
 
    @Test
@@ -63,11 +75,11 @@ public class AllTokenCollectionsTest extends DatabaseTest {
       TokenCollection tokenCollection = new TokenCollection("test-add-tokens");
       tokenCollection.addTokens("token1", "token2");
       int countTokens = tokenCollection.countTokens();
-      allTokenCollections.save(tokenCollection);
+      AllTokenCollections.save(tokenCollection);
 
       // When I add a new token
       tokenCollection.addTokens("newToken");
-      allTokenCollections.save(tokenCollection);
+      AllTokenCollections.save(tokenCollection);
 
       // Then
       assertThat(tokenCollection.getTokens()).hasSize(countTokens + 1).contains("newToken");
@@ -78,10 +90,10 @@ public class AllTokenCollectionsTest extends DatabaseTest {
    public void should_return_TokenCollection_names() {
 
       // Given DataSet, When
-      Iterable<String> allTokenCollectionsName = AllTokenCollections.findAllTokenCollectionsName();
+      Iterable<String> AllTokenCollectionsName = AllTokenCollections.findAllTokenCollectionsName();
 
       // Then
-      assertThat(allTokenCollectionsName).containsOnly("dwarf", "elf");
+      assertThat(AllTokenCollectionsName).containsOnly("dwarf", "elf");
    }
 
 

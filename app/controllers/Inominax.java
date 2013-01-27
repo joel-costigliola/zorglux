@@ -57,18 +57,12 @@ public class Inominax extends Controller {
       return ok(generatedNames.render(newArrayList(names)));
    }
 
-   /**
-    * called when user select a NameCollection.
-    */
    public static Result getNameCollection(String nameCollectionName) {
       NameCollection nameCollection = AllNameCollections.findByName(nameCollectionName);
       logger.info("'{}' NameCollection selected", nameCollection);
       return ok(nameCollectionTemplate.render(nameCollection));
    }
 
-   /**
-    * called when user select creates a new NameCollection.
-    */
    public static Result newNameCollection(String nameCollectionName) {
       NameCollection nameCollection = new NameCollection(nameCollectionName);
       AllNameCollections.save(nameCollection);
@@ -76,28 +70,25 @@ public class Inominax extends Controller {
       return ok();
    }
 
-   /**
-    * called when user select a TokenCollection.
-    */
    public static Result getTokenCollection(String tokenCollectionName) {
       TokenCollection tokenCollection = AllTokenCollections.findByName(tokenCollectionName);
       logger.info("'{}' TokenCollection selected", tokenCollection);
       return ok(tokensTemplate.render(tokenCollection));
    }
 
-   /**
-    * called when user select creates a new TokenCollection.
-    */
    public static Result newTokenCollection(String tokenCollectionToken) {
       TokenCollection tokenCollection = new TokenCollection(tokenCollectionToken);
       AllTokenCollections.save(tokenCollection);
-      logger.info("Token collection '{}' created", tokenCollection);
+      logger.info("'{}' TokenCollection created", tokenCollection);
       return ok();
    }
 
-   /**
-    * called when user select creates a new TokenCollection.
-    */
+   public static Result deleteTokenCollection(String tokenCollectionName) {
+      AllTokenCollections.remove(tokenCollectionName);
+      logger.info("'{}' TokenCollection deleted", tokenCollectionName);
+      return ok();
+   }
+
    public static Result manageTokens() {
       logger.info("Managing Token collections ...");
       return ok(tokensManagement.render());

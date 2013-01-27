@@ -14,14 +14,27 @@ function newTokenCollection() {
     });
 }
 
+function deleteTokenCollection(tokenCollection) {
+    if (window.confirm(tokenCollection + " will be deleted.")) {
+        $.post('/inominax/tokens/delete/' + encodeURIComponent(tokenCollection), function () {
+            $("#tokenCollectionSelect option[value='" + tokenCollection + "']").remove();
+            $('#tokenCollectionSelect').trigger('change');
+        });
+    }
+}
+
 $(document).ready(function () {
 
     $('#tokenCollectionSelect').change(function () {
-        displayTokenCollection($('#tokenCollectionSelect option:selected').text());
+        displayTokenCollection($('#tokenCollectionSelect option:selected').val());
     }).trigger('change');
 
     $('#newTokenCollection').click(function () {
         newTokenCollection();
+    });
+
+    $('#deleteTokenCollection').click(function () {
+        deleteTokenCollection($('#tokenCollectionSelect option:selected').val());
     });
 
 });

@@ -25,6 +25,10 @@ public class AllTokenCollections {
       tokenCollectionDBCollection().save(tokenCollection);
    }
 
+   public static void remove(String tokenCollectionName) {
+      tokenCollectionDBCollection().remove("{name:#}", tokenCollectionName);
+   }
+
    private static MongoCollection tokenCollectionDBCollection() {
       return zorgluxDB().getCollection(TokenCollection.class.getSimpleName());
    }
