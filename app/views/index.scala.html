@@ -6,7 +6,7 @@
 
    <h2>Names generation parameters</h2>
 
-   @form(action = routes.Inominax.generateNames, args = 'class -> "namesForm", 'id -> "generateNamesForm") {
+   @form(action = routes.Inominax.generateNames, args = 'class -> "inominaxForm", 'id -> "generateNamesForm") {
 
       @inputText(
          field = generateNamesForm("numberOfNamesToGenerate"),
@@ -17,7 +17,7 @@
 
       @select(
          field = generateNamesForm("tokenCollectionName"),
-         options = options(Inominax.tokenCollectionsNamesOptions),
+         options = options(Inominax.tokenCollectionsNames),
          args = '_label -> "Choose tokens collection"
       )
 
@@ -30,12 +30,12 @@
 
    <h2>Collections of list names</h2>
 
-   <div class="namesForm">
+   <div class="inominaxForm">
       <dl class=" " id="nameCollectionSelect_field">
          <dt><label for="nameCollectionSelect">Choose name collection</label></dt>
          <dd>
             <select id="nameCollectionSelect" name="nameCollectionSelect">
-            @for(nameCollectionName <- Inominax.nameCollectionsNamesOptions) {
+            @for(nameCollectionName <- Inominax.nameCollectionsNames) {
                <option value="@nameCollectionName">@nameCollectionName</option>
             }
             </select>

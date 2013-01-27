@@ -1,0 +1,41 @@
+@import helper._
+
+@main("Inominax - manage token collections") {
+
+   <h2>Managing token collections</h2>
+
+   <div class="inominaxForm">
+      <dl class=" " id="tokenCollectionSelect_field">
+         <dt><label for="tokenCollectionSelect">Choose token collection</label></dt>
+         <dd>
+            <select id="tokenCollectionSelect" token="tokenCollectionSelect">
+            @for(tokenCollectionName <- Inominax.tokenCollectionsNames) {
+               <option value="@tokenCollectionName">@tokenCollectionName</option>
+            }
+            </select>
+         </dd>
+         <dd>
+            <input type="button" value="create" id="newTokenCollection">
+         </dd>
+         <dd>
+            <input type="button" value="delete" id="deleteTokenCollection">
+         </dd>
+      </dl>
+   </div>
+
+   <div id="tokenCollection" class="tokenCollection"></div>
+
+   <div class="inominaxForm">
+      <dl class=" " id="newToken_field">
+         <dt><label for="newToken">Add a new token</label></dt>
+         <dd>
+            <input type="text" value="" id="newToken">
+         </dd>
+         <dd>
+            <input type="button" value="add" id="addToken">
+         </dd>
+      </dl>
+   </div>
+
+}
+

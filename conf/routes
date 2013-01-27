@@ -5,11 +5,17 @@
 # Home page
 GET     /                                 controllers.Inominax.index
 
-# Inominax pages
+# Inominax pages : tokens management
+GET     /inominax/tokens                          controllers.Inominax.manageTokens()
+GET     /inominax/tokens/:tokenCollectionName     controllers.Inominax.getTokenCollection(tokenCollectionName)
+POST    /inominax/tokens/:tokenCollectionName     controllers.Inominax.newTokenCollection(tokenCollectionName)
+
+# Inominax main page
 GET     /inominax                         controllers.Inominax.index()
 POST    /inominax                         controllers.Inominax.generateNames()
 GET     /inominax/:nameCollectionName     controllers.Inominax.getNameCollection(nameCollectionName)
 POST    /inominax/:nameCollectionName     controllers.Inominax.newNameCollection(nameCollectionName)
+
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file) 

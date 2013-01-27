@@ -54,4 +54,8 @@ public class TokenCollection extends StringCollection implements Serializable {
    public int countTokens() {
       return tokens.size();
    }
+
+   public boolean hasTokens() {
+      return !tokens.isEmpty();
+   }
 }

@@ -11,9 +11,8 @@ import play.mvc.Controller;
 import play.mvc.Result;
 import repositories.AllNameCollections;
 import repositories.AllTokenCollections;
-import views.html.generatedNames;
+import views.html.*;
 import views.html.index;
-import views.html.nameCollectionTemplate;
 
 import java.util.List;
 import java.util.Set;
@@ -77,11 +76,38 @@ public class Inominax extends Controller {
       return ok();
    }
 
-   public static List<String> nameCollectionsNamesOptions() {
+   /**
+    * called when user select a TokenCollection.
+    */
+   public static Result getTokenCollection(String tokenCollectionName) {
+      TokenCollection tokenCollection = AllTokenCollections.findByName(tokenCollectionName);
+      logger.info("'{}' TokenCollection selected", tokenCollection);
+      return ok(tokensTemplate.render(tokenCollection));
+   }
+
+   /**
+    * called when user select creates a new TokenCollection.
+    */
+   public static Result newTokenCollection(String tokenCollectionToken) {
+      TokenCollection tokenCollection = new TokenCollection(tokenCollectionToken);
+      AllTokenCollections.save(tokenCollection);
+      logger.info("Token collection '{}' created", tokenCollection);
+      return ok();
+   }
+
+   /**
+    * called when user select creates a new TokenCollection.
+    */
+   public static Result manageTokens() {
+      logger.info("Managing Token collections ...");
+      return ok(tokensManagement.render());
+   }
+
+   public static List<String> nameCollectionsNames() {
       return newArrayList(AllNameCollections.findAllNameCollectionsName());
    }
 
-   public static List<String> tokenCollectionsNamesOptions() {
+   public static List<String> tokenCollectionsNames() {
       return newArrayList(AllTokenCollections.findAllTokenCollectionsName());
    }
 

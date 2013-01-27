@@ -1,0 +1,13 @@
+@(tokenCollection: TokenCollection)
+
+@if(tokenCollection.hasTokens) {
+   @for(token <- tokenCollection.getTokens) {
+      <div class="token">@token</div>
+   }
+} else {
+   No tokens in @tokenCollection.getName yet !
+   <p>
+   To add a token in @tokenCollection.getName, set a token in the text box and click on add token button.
+}
+
+
