@@ -10,6 +10,7 @@ GET     /inominax/tokens                          controllers.Inominax.manageTok
 GET     /inominax/tokens/:tokenCollectionName     controllers.Inominax.getTokenCollection(tokenCollectionName)
 POST    /inominax/tokens/:tokenCollectionName     controllers.Inominax.newTokenCollection(tokenCollectionName)
 POST    /inominax/tokens/delete/:tokenCollectionName     controllers.Inominax.deleteTokenCollection(tokenCollectionName)
+POST    /inominax/tokens/:tokenCollectionName/add/:token     controllers.Inominax.addTokenToCollection(token, tokenCollectionName)
 
 # Inominax main page
 GET     /inominax                         controllers.Inominax.index()

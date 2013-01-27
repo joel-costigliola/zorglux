@@ -22,12 +22,12 @@ public class TokenCollection extends StringCollection implements Serializable {
       this.tokens = newTreeSet();
    }
 
-   public static List<String> list() {
-      return newArrayList("Elf", "Orc", "Dwarf", "Human");
-   }
-
    public SortedSet<String> getTokens() {
       return tokens;
+   }
+
+   public List<String> getOrderedTokens() {
+      return newArrayList(tokens)  ;
    }
 
    public void setTokens(SortedSet<String> tokens) {

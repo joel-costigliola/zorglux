@@ -1,7 +1,7 @@
 @(tokenCollection: TokenCollection)
 
 @if(tokenCollection.hasTokens) {
-   @for(token <- tokenCollection.getTokens) {
+   @for(token <- tokenCollection.getOrderedTokens) {
       <div class="token">@token</div>
    }
 } else {

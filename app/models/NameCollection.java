@@ -23,7 +23,7 @@ public class NameCollection extends StringCollection implements Serializable {
 
    public NameCollection(String name) {
       super(name);
-      this.names = new TreeSet<String>();
+      this.names = new TreeSet<>();
    }
 
    public Set<String> getNames() {
