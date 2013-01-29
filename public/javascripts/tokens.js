@@ -32,6 +32,7 @@ function addTokenToCollection(newToken, tokenCollection) {
 }
 
 function removeTokenFromCollection(token, tokenCollection) {
+    // to play it safe, uncomment 'if'
     //if (window.confirm("Delete '" + token + "' from " + tokenCollection + " tokens ?")) {
     $.post('/inominax/tokens/' + encodeURIComponent(tokenCollection) + '/delete/' + encodeURIComponent(token), function () {
         $('#tokenCollectionSelect').trigger('change');

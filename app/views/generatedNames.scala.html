@@ -3,8 +3,9 @@
 @if(!generatedNames.isEmpty()) {
    <h2>Generated names</h2>
    @for(name <- generatedNames) {
-      <div class="generatedName">@name</div>
+      <div class="generatedName" title="Click and save me to selected name collection">@name</div>
    }
+   <p>Save a generated name to current names collection by clicking on it.
 }
 
 

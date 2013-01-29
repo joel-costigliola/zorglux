@@ -57,6 +57,8 @@ public class Inominax extends Controller {
       return ok(generatedNames.render(newArrayList(names)));
    }
 
+   // Names collections
+
    public static Result getNameCollection(String nameCollectionName) {
       NameCollection nameCollection = AllNameCollections.findByName(nameCollectionName);
       logger.info("'{}' NameCollection selected", nameCollection);
@@ -69,6 +71,20 @@ public class Inominax extends Controller {
       logger.info("Name collection '{}' created", nameCollection);
       return ok();
    }
+
+   public static Result addNameToCollection(String name, String nameCollectionName) {
+      NameCollection nameCollection = AllNameCollections.findByName(nameCollectionName);
+      nameCollection.addNames(name);
+      AllNameCollections.save(nameCollection);
+      logger.info("'{}' name added to '{}' NameCollection", name, nameCollection);
+      return ok();
+   }
+
+   public static List<String> nameCollectionsNames() {
+      return newArrayList(AllNameCollections.findAllNameCollectionsName());
+   }
+
+   // Tokens  collections
 
    public static Result getTokenCollection(String tokenCollectionName) {
       TokenCollection tokenCollection = AllTokenCollections.findByName(tokenCollectionName);
@@ -110,9 +126,6 @@ public class Inominax extends Controller {
       return ok(tokensManagement.render());
    }
 
-   public static List<String> nameCollectionsNames() {
-      return newArrayList(AllNameCollections.findAllNameCollectionsName());
-   }
 
    public static List<String> tokenCollectionsNames() {
       return newArrayList(AllTokenCollections.findAllTokenCollectionsName());

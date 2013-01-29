@@ -46,6 +46,11 @@ public class NameCollection extends StringCollection implements Serializable {
       }
    }
 
+   public List<String> getOrderedNames() {
+      return newArrayList(names)  ;
+   }
+
+
    @Override
    public String toString() {
       return name;

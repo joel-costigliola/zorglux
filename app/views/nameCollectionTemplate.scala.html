@@ -1,7 +1,7 @@
 @(nameCollection: NameCollection)
 
 @if(nameCollection.hasNames) {
-   @for(name <- nameCollection.getNames) {
+   @for(name <- nameCollection.getOrderedNames) {
       <div class="savedName">@name</div>
    }
 } else {

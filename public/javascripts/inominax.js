@@ -13,10 +13,21 @@ function newNameCollection() {
     });
 }
 
+function selectedNameCollection() {
+    return $('#nameCollectionSelect option:selected').val();
+}
+
+function saveNameToCollection(name, nameCollection) {
+    $.post('/inominax/names/' + encodeURIComponent(nameCollection) + '/add/' + encodeURIComponent(name), function () {
+        // reload selected nameCollection
+        $('#nameCollectionSelect').trigger('change');
+    });
+}
+
 $(document).ready(function () {
 
     $('#nameCollectionSelect').change(function () {
-        displayNameCollection($('#nameCollectionSelect option:selected').text());
+        displayNameCollection(selectedNameCollection());
     }).trigger('change');
 
     $('#newNameCollection').click(function () {
@@ -31,6 +42,13 @@ $(document).ready(function () {
             $("#generatedNames").empty().append(data);
         });
     });
+
+    $("#generatedNames").on('click', ".generatedName", function () {
+        var generatedName = this.textContent;
+        saveNameToCollection(generatedName, selectedNameCollection());
+        $(this).remove();
+    });
+
 });
 
 
