@@ -11,6 +11,7 @@ GET     /inominax/tokens/:tokenCollectionName     controllers.Inominax.getTokenC
 POST    /inominax/tokens/:tokenCollectionName     controllers.Inominax.newTokenCollection(tokenCollectionName)
 POST    /inominax/tokens/delete/:tokenCollectionName     controllers.Inominax.deleteTokenCollection(tokenCollectionName)
 POST    /inominax/tokens/:tokenCollectionName/add/:token     controllers.Inominax.addTokenToCollection(token, tokenCollectionName)
+POST    /inominax/tokens/:tokenCollectionName/delete/:token     controllers.Inominax.removeTokenFromCollection(token, tokenCollectionName)
 
 # Inominax main page
 GET     /inominax                         controllers.Inominax.index()

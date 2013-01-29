@@ -91,6 +91,14 @@ public class Inominax extends Controller {
       return ok();
    }
 
+   public static Result removeTokenFromCollection(String token, String tokenCollectionName) {
+      TokenCollection tokenCollection = AllTokenCollections.findByName(tokenCollectionName);
+      tokenCollection.removeTokens(token);
+      AllTokenCollections.save(tokenCollection);
+      logger.info("'{}' token removed from '{}' TokenCollection", token, tokenCollection);
+      return ok();
+   }
+
    public static Result deleteTokenCollection(String tokenCollectionName) {
       AllTokenCollections.remove(tokenCollectionName);
       logger.info("'{}' TokenCollection deleted", tokenCollectionName);

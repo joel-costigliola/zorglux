@@ -25,17 +25,28 @@ function deleteTokenCollection(tokenCollection) {
 
 function addTokenToCollection(newToken, tokenCollection) {
     if (newToken) {
-        //      /inominax/tokens/:tokenCollectionName/add/:token
         $.post('/inominax/tokens/' + encodeURIComponent(tokenCollection) + '/add/' + encodeURIComponent(newToken), function () {
             $('#tokenCollectionSelect').trigger('change');
         });
     }
 }
 
+function removeTokenFromCollection(token, tokenCollection) {
+    //if (window.confirm("Delete '" + token + "' from " + tokenCollection + " tokens ?")) {
+    $.post('/inominax/tokens/' + encodeURIComponent(tokenCollection) + '/delete/' + encodeURIComponent(token), function () {
+        $('#tokenCollectionSelect').trigger('change');
+    });
+    //}
+}
+
+function selectedTokenCollection() {
+    return $('#tokenCollectionSelect option:selected').val();
+}
+
 $(document).ready(function () {
 
     $('#tokenCollectionSelect').change(function () {
-        displayTokenCollection($('#tokenCollectionSelect option:selected').val());
+        displayTokenCollection(selectedTokenCollection());
     }).trigger('change');
 
     $('#newTokenCollection').click(function () {
@@ -43,11 +54,16 @@ $(document).ready(function () {
     });
 
     $('#deleteTokenCollection').click(function () {
-        deleteTokenCollection($('#tokenCollectionSelect option:selected').val());
+        deleteTokenCollection(selectedTokenCollection());
     });
 
     $('#addToken').click(function () {
-        addTokenToCollection($('#newToken').val(), $('#tokenCollectionSelect option:selected').val());
+        addTokenToCollection($('#newToken').val(), selectedTokenCollection());
+    });
+
+    $("#tokenCollection").on('click', ".x", function () {
+        var token = this.id.slice(0, -2);
+        removeTokenFromCollection(token, selectedTokenCollection());
     });
 
 });
