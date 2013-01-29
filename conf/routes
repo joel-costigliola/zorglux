@@ -19,7 +19,7 @@ GET     /inominax/names/:nameCollectionName     controllers.Inominax.getNameColl
 POST    /inominax/names/:nameCollectionName     controllers.Inominax.newNameCollection(nameCollectionName)
 # POST    /inominax/names/delete/:nameCollectionName     controllers.Inominax.deleteNameCollection(nameCollectionName)
 POST    /inominax/names/:nameCollectionName/add/:name     controllers.Inominax.addNameToCollection(name, nameCollectionName)
-# POST    /inominax/names/:nameCollectionName/delete/:name     controllers.Inominax.removeNameFromCollection(name, nameCollectionName)
+POST    /inominax/names/:nameCollectionName/delete/:name     controllers.Inominax.removeNameFromCollection(name, nameCollectionName)
 
 # Inominax main page
 GET     /inominax                         controllers.Inominax.index()

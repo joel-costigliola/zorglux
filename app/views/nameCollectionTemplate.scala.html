@@ -2,7 +2,7 @@
 
 @if(nameCollection.hasNames) {
    @for(name <- nameCollection.getOrderedNames) {
-      <div class="savedName">@name</div>
+      <span class="itemWrapper"><span class="name">@name</span><span class="deleteName" id="@name-x" title="delete name">x</span></span>
    }
 } else {
    No saved names yet !

@@ -140,6 +140,15 @@ nav a:hover {
    Author's custom styles
    ========================================================================== */
 
+.help {
+    display: inline-block;
+    background: #b6dffa;
+    border-radius: 5px;
+    margin: 3px;
+    padding: 3px 8px;
+}
+
+
 #generateNamesButton {
     display: block;
     float: right;
@@ -170,14 +179,14 @@ nav a:hover {
     border-radius: 5px;
 }
 
-.nom {
+.itemWrapper {
     margin: 0px 2px;
 }
 
 .token {
     background: #F5DA81;
     font-family: "Lucida Console", Monaco, monospace;
-    padding:1px 9px;
+    padding: 1px 9px;
     border-radius: 3px;
 }
 
@@ -185,11 +194,35 @@ nav a:hover {
     background: #F5DA81;
     font-family: "Lucida Console", Monaco, monospace;
     padding: 1px 6px;
-    border-left:1px white solid;
+    border-left: 1px white solid;
     border-radius: 3px;
 }
 
 .x:hover {
+    color: #F5DA81;
+    background: #000000;
+}
+
+.name {
+    background: #F5DA81;
+    font-family: "Lucida Console", Monaco, monospace;
+    padding: 1px 9px;
+    border-radius: 3px;
+}
+
+#generatedNames .name:hover {
+    border: 2px #B37D47 solid;
+}
+
+.deleteName {
+    background: #F5DA81;
+    font-family: "Lucida Console", Monaco, monospace;
+    padding: 1px 6px;
+    border-left: 1px white solid;
+    border-radius: 3px;
+}
+
+.deleteName:hover {
     color: #F5DA81;
     background: #000000;
 }

@@ -30,19 +30,19 @@ public class NameCollection extends StringCollection implements Serializable {
       return names;
    }
 
-   public void setNames(SortedSet<String> tokens) {
-      names = tokens;
+   public void setNames(SortedSet<String> names) {
+      this.names = names;
    }
 
    public void addNames(String... newNames) {
-      for (String token : newNames) {
-         names.add(token);
+      for (String name : newNames) {
+         names.add(name);
       }
    }
 
-   public void removeNames(String... tokensToRemove) {
-      for (String token : tokensToRemove) {
-         names.remove(token);
+   public void removeNames(String... namesToRemove) {
+      for (String name: namesToRemove) {
+         names.remove(name);
       }
    }
 

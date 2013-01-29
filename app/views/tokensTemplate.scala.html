@@ -2,7 +2,7 @@
 
 @if(tokenCollection.hasTokens) {
    @for(token <- tokenCollection.getOrderedTokens) {
-      <span class="nom"><span class="token">@token</span><span class="x" id="@token-x" title="delete token">x</span></span>
+      <span class="itemWrapper"><span class="token">@token</span><span class="x" id="@token-x" title="delete token">x</span></span>
    }
 } else {
    No tokens in @tokenCollection.getName yet !

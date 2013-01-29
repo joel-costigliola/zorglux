@@ -24,6 +24,13 @@ function saveNameToCollection(name, nameCollection) {
     });
 }
 
+function removeNameFromCollection(name, nameCollection) {
+    $.post('/inominax/names/' + encodeURIComponent(nameCollection) + '/delete/' + encodeURIComponent(name), function () {
+        $('#nameCollectionSelect').trigger('change');
+    });
+}
+
+
 $(document).ready(function () {
 
     $('#nameCollectionSelect').change(function () {
@@ -43,10 +50,15 @@ $(document).ready(function () {
         });
     });
 
-    $("#generatedNames").on('click', ".generatedName", function () {
+    $("#generatedNames").on('click', ".name", function () {
         var generatedName = this.textContent;
         saveNameToCollection(generatedName, selectedNameCollection());
         $(this).remove();
+    });
+
+    $("#nameCollection").on('click', ".deleteName", function () {
+        var name = this.id.slice(0, -2);
+        removeNameFromCollection(name, selectedNameCollection());
     });
 
 });

@@ -80,6 +80,14 @@ public class Inominax extends Controller {
       return ok();
    }
 
+   public static Result removeNameFromCollection(String name, String nameCollectionName) {
+      NameCollection nameCollection = AllNameCollections.findByName(nameCollectionName);
+      nameCollection.removeNames(name);
+      AllNameCollections.save(nameCollection);
+      logger.info("'{}' name removed from '{}' NameCollection", name, nameCollection);
+      return ok();
+   }
+
    public static List<String> nameCollectionsNames() {
       return newArrayList(AllNameCollections.findAllNameCollectionsName());
    }
@@ -125,7 +133,6 @@ public class Inominax extends Controller {
       logger.info("Managing Token collections ...");
       return ok(tokensManagement.render());
    }
-
 
    public static List<String> tokenCollectionsNames() {
       return newArrayList(AllTokenCollections.findAllTokenCollectionsName());
