@@ -140,6 +140,23 @@ nav a:hover {
    Author's custom styles
    ========================================================================== */
 
+aside a
+{
+    color: #ffffff;
+    text-decoration: none;
+    padding: 5px 10px;
+}
+
+aside a:hover
+{
+    color: #ffffff;
+    background: #B37D47;
+    background-clip: border-box;
+    background-size: auto auto;
+    border-radius: 5px;
+}
+
+
 .help {
     display: inline-block;
     background: #b6dffa;
