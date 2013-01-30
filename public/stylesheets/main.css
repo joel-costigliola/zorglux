@@ -140,15 +140,31 @@ nav a:hover {
    Author's custom styles
    ========================================================================== */
 
-aside a
-{
+h2 {
+    color: white;
+    background-color: #b37d47;
+    border-radius: 5px;
+    padding: 3px 8px;
+}
+
+.main-container {
+    background: #f0c88b;
+    z-index: 0;
+    position: relative;
+}
+
+.header-container {
+    z-index: 2;
+    position: relative;
+}
+
+aside a {
     color: #ffffff;
     text-decoration: none;
     padding: 5px 10px;
 }
 
-aside a:hover
-{
+aside a:hover {
     color: #ffffff;
     background: #B37D47;
     background-clip: border-box;
@@ -156,15 +172,12 @@ aside a:hover
     border-radius: 5px;
 }
 
-
 .help {
     display: inline-block;
-    background: #b6dffa;
     border-radius: 5px;
     margin: 3px;
     padding: 3px 8px;
 }
-
 
 #generateNamesButton {
     display: block;
@@ -201,51 +214,57 @@ aside a:hover
 }
 
 .token {
-    background: #F5DA81;
+    color: #ffe48b;
+    background: #815839;
     font-family: "Lucida Console", Monaco, monospace;
     padding: 1px 9px;
     border-radius: 3px;
 }
 
 .x {
-    background: #F5DA81;
+    color: #ffe48b;
+    background: #815839;
     font-family: "Lucida Console", Monaco, monospace;
     padding: 1px 6px;
-    border-left: 1px white solid;
+    border-left: 1px #f0c88b solid;
     border-radius: 3px;
 }
 
 .x:hover {
-    color: #F5DA81;
-    background: #000000;
+    color: #55362a;
+    background: #ffe48b;
 }
 
 .name {
-    background: #F5DA81;
+    color: #ffe48b;
+    background: #815839;
     font-family: "Lucida Console", Monaco, monospace;
     padding: 1px 9px;
     border-radius: 3px;
 }
 
 #generatedNames .name:hover {
-    border: 2px #B37D47 solid;
+    /*box-shadow: 0px 0px 9px #ffe48b; */
+    background: #ffe48b;
+    color: #55362a;
 }
 
 .deleteName {
-    background: #F5DA81;
+    color: #ffe48b;
+    background: #815839;
     font-family: "Lucida Console", Monaco, monospace;
     padding: 1px 6px;
-    border-left: 1px white solid;
+    border-left: 1px #f0c88b solid;
     border-radius: 3px;
 }
 
 .deleteName:hover {
-    color: #F5DA81;
-    background: #000000;
+    color: #55362a;
+    background: #ffe48b;
 }
 
 #nameCollection {
-    background: #FAFAFA;
+    background: #f0c88b;
     border-radius: 5px;
 }
 
@@ -268,7 +287,8 @@ aside a:hover
 }
 
 .inominaxForm dl {
-    background: #FAFAFA;
+    background: #cc9966;
+    border-radius: 5px;
     padding: 10px;
 }
 
@@ -324,10 +344,16 @@ aside a:hover
     /* ====================
        WIDE: CSS3 Effects
       ==================== */
-    .header-container, .main aside {
-        -webkit-box-shadow: 0 5px 10px #aaa;
-        -moz-box-shadow: 0 5px 10px #aaa;
-        box-shadow: 0 5px 10px #aaa;
+    .main aside {
+        -webkit-box-shadow: 5px 5px 5px #4c4c4c;
+        -moz-box-shadow: 5 5px 5px #4c4c4c;
+        box-shadow: 5px 5px 5px #4c4c4c;
+    }
+
+    .header-container {
+        -webkit-box-shadow: 0 5px 10px #4c4c4c;
+        -moz-box-shadow: 5 5px 10px #4c4c4c;
+        box-shadow: 2px 5px 5px #4c4c4c;
     }
 
     /* ============

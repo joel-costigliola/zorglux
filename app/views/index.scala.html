@@ -10,7 +10,7 @@
 
       @inputText(
          field = generateNamesForm("numberOfNamesToGenerate"),
-         '_label -> "number of names",
+         '_label -> "Number of names",
          'id -> "numberOfNamesToGenerateInput",
          '_error -> generateNamesForm("numberOfNamesToGenerate").error.map(_.withMessage("Choose a valid number"))
       )
@@ -22,7 +22,7 @@
       )
 
       <div id="generateNamesButtonDiv">
-      &nbsp; <input type="submit" value="Generate" id="generateNamesButton">
+      &nbsp; <input type="submit" value="Generate names" id="generateNamesButton">
       </div>
    }
 
