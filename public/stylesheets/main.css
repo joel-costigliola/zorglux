@@ -268,41 +268,45 @@ aside a:hover {
     border-radius: 5px;
 }
 
-.inominaxForm dd {
+.inominaxForm label {
     display: inline-block;
+    padding-left: 5px;
+    padding-right: 10px;
+    width: 135px;
+    font-size: 14px;
 }
 
 .inominaxForm dd.info {
     display: none;
 }
 
-.inominaxForm dd.error {
-    margin-left: 10px;
-    font-size: 12px;
-    color: #c00;
-}
-
-.inominaxForm label {
+.inominaxForm div input, .inominaxForm div select {
     font-size: 14px;
+    margin: 0px 10px;
 }
 
-.inominaxForm dl {
+.inominaxForm div {
     background: #cc9966;
     border-radius: 5px;
     padding: 10px;
-}
-
-.inominaxForm dl.error {
-    background: #FBDDE6;
+    margin: 10px 0px;
 }
 
 .inominaxForm dt {
-    display: inline-block;
-    width: 160px;
+    display: inline;
+    width: 140px;
 }
 
 #numberOfNamesToGenerateInput {
     width: 35px;
+}
+
+#generateNamesButtonDiv {
+    background: #f0c88b;
+}
+
+#newToken {
+    width: 50px;
 }
 
 /* ==========================================================================

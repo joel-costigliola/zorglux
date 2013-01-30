@@ -2,39 +2,29 @@
 
 @main("Inominax - manage token collections") {
 
-   <h2>Managing token collections</h2>
+   <h2>Manage list of tokens</h2>
 
    <div class="inominaxForm">
-      <dl class=" " id="tokenCollectionSelect_field">
-         <dt><label for="tokenCollectionSelect">Choose token collection</label></dt>
-         <dd>
-            <select id="tokenCollectionSelect" token="tokenCollectionSelect">
-            @for(tokenCollectionName <- Inominax.tokenCollectionsNames) {
-               <option value="@tokenCollectionName">@tokenCollectionName</option>
-            }
-            </select>
-         </dd>
-         <dd>
-            <input type="button" value="create" id="newTokenCollection" title="create a new token collection">
-         </dd>
-         <dd>
-            <input type="button" value="delete" id="deleteTokenCollection" title="delete selected token collection">
-         </dd>
-      </dl>
+      <div>
+         <label for="tokenCollectionSelect">Choose list of tokens</label>
+         <select id="tokenCollectionSelect" token="tokenCollectionSelect">
+         @for(tokenCollectionName <- Inominax.tokenCollectionsNames) {
+            <option value="@tokenCollectionName">@tokenCollectionName</option>
+         }
+         </select>
+         <input type="button" value="create" id="newTokenCollection" title="create a new list of tokens">
+         <input type="button" value="delete" id="deleteTokenCollection" title="delete selected list of tokens">
+      </div>
    </div>
 
    <div id="tokenCollection" class="tokenCollection"></div>
 
    <div class="inominaxForm">
-      <dl class=" " id="newToken_field">
-         <dt><label for="newToken">Add a new token</label></dt>
-         <dd>
-            <input type="text" value="" id="newToken">
-         </dd>
-         <dd>
-            <input type="button" value="add" id="addToken">
-         </dd>
-      </dl>
+      <div class=" " id="newToken_field">
+         <label for="newToken">Add a new token</label>
+         <input type="text" value="" id="newToken">
+         <input type="button" value="add" id="addToken">
+      </div>
    </div>
 
 }

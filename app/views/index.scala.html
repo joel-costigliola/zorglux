@@ -8,18 +8,19 @@
 
    @form(action = routes.Inominax.generateNames, args = 'class -> "inominaxForm", 'id -> "generateNamesForm") {
 
-      @inputText(
-         field = generateNamesForm("numberOfNamesToGenerate"),
-         '_label -> "Number of names",
-         'id -> "numberOfNamesToGenerateInput",
-         '_error -> generateNamesForm("numberOfNamesToGenerate").error.map(_.withMessage("Choose a valid number"))
-      )
+      <div>
+         <label for="numberOfNamesToGenerateInput">Choose list of tokens</label>
+         <input type="text" id="numberOfNamesToGenerateInput" name="numberOfNamesToGenerate" value="20">
+      </div>
 
-      @select(
-         field = generateNamesForm("tokenCollectionName"),
-         options = options(Inominax.tokenCollectionsNames),
-         args = '_label -> "Choose tokens collection"
-      )
+      <div>
+         <label for="tokenCollectionName">Choose list of tokens</label>
+         <select id="tokenCollectionName" name="tokenCollectionName">
+         @for(tokenCollectionName <- Inominax.tokenCollectionsNames) {
+            <option value="@tokenCollectionName">@tokenCollectionName</option>
+         }
+         </select>
+      </div>
 
       <div id="generateNamesButtonDiv">
       &nbsp; <input type="submit" value="Generate names" id="generateNamesButton">
@@ -28,22 +29,18 @@
 
    <div id="generatedNames" class="generatedNames"></div>
 
-   <h2>Collections of names</h2>
+   <h2>Lists of names</h2>
 
    <div class="inominaxForm">
-      <dl class=" " id="nameCollectionSelect_field">
-         <dt><label for="nameCollectionSelect">Choose name collection</label></dt>
-         <dd>
-            <select id="nameCollectionSelect" name="nameCollectionSelect">
-            @for(nameCollectionName <- Inominax.nameCollectionsNames) {
-               <option value="@nameCollectionName">@nameCollectionName</option>
-            }
-            </select>
-         </dd>
-         <dd>
-            <input type="button" value="new name collection" id="newNameCollection">
-         </dd>
-      </dl>
+      <div>
+         <label for="nameCollectionSelect">Choose list of names</label>
+         <select id="nameCollectionSelect" name="nameCollectionSelect">
+         @for(nameCollectionName <- Inominax.nameCollectionsNames) {
+            <option value="@nameCollectionName">@nameCollectionName</option>
+         }
+         </select>
+         <input type="button" value="new list"  title="create a new list of names" id="newNameCollection">
+      </div>
    </div>
 
    <div id="nameCollection" class="nameCollection"></div>
