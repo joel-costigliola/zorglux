@@ -173,22 +173,21 @@ aside a:hover {
 }
 
 .help {
-    display: inline-block;
+    display: block;
     border-radius: 5px;
-    margin: 3px;
-    padding: 3px 8px;
+    padding: 5px 5px;
 }
 
 #generateNamesButton {
     display: block;
     float: right;
+    margin: 0px;
 }
 
 #generateNamesButtonDiv {
     display: block;
-    margin: 2px 2px;
-
-    clear: both;
+    background: #f0c88b;
+    padding: 0px;
 }
 
 .generatedName {
@@ -299,10 +298,6 @@ aside a:hover {
 
 #numberOfNamesToGenerateInput {
     width: 35px;
-}
-
-#generateNamesButtonDiv {
-    background: #f0c88b;
 }
 
 #newToken {
