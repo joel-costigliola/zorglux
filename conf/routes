@@ -14,10 +14,10 @@ POST    /inominax/tokens/:tokenCollectionName/add/:token     controllers.Inomina
 POST    /inominax/tokens/:tokenCollectionName/delete/:token     controllers.Inominax.removeTokenFromCollection(token, tokenCollectionName)
 
 # Inominax pages : names management
-# GET     /inominax/names                         controllers.Inominax.manageNames()
+GET     /inominax/names                         controllers.Inominax.manageNames()
 GET     /inominax/names/:nameCollectionName     controllers.Inominax.getNameCollection(nameCollectionName)
 POST    /inominax/names/:nameCollectionName     controllers.Inominax.newNameCollection(nameCollectionName)
-# POST    /inominax/names/delete/:nameCollectionName     controllers.Inominax.deleteNameCollection(nameCollectionName)
+POST    /inominax/names/delete/:nameCollectionName     controllers.Inominax.deleteNameCollection(nameCollectionName)
 POST    /inominax/names/:nameCollectionName/add/:name     controllers.Inominax.addNameToCollection(name, nameCollectionName)
 POST    /inominax/names/:nameCollectionName/delete/:name     controllers.Inominax.removeNameFromCollection(name, nameCollectionName)
 

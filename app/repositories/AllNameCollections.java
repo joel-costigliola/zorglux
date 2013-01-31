@@ -33,6 +33,10 @@ public class AllNameCollections {
       nameCollectionDBCollection().save(nameCollection);
    }
 
+   public static void remove(String nameCollectionName) {
+      nameCollectionDBCollection().remove("{name:#}", nameCollectionName);
+   }
+
    private static MongoCollection nameCollectionDBCollection() {
       return zorgluxDB().getCollection(NameCollection.class.getSimpleName());
    }

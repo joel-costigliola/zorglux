@@ -7,14 +7,15 @@ function newNameCollection() {
     if (!name) return;
     // TODO check that name is not already used, in that case just select it after notifying user of this existing collection name
     $.post('/inominax/' + encodeURIComponent(name), function () {
-        $('#nameCollectionSelect').append('<option value="' + name + '" selected="selected">' + name + '</option>');
+        var nameCollectionSelect = $('#nameCollectionSelect');
+        nameCollectionSelect.append('<option value="' + name + '" selected="selected">' + name + '</option>');
         // TODO : sort nameCollectionSelect options
-        $('#nameCollectionSelect').trigger('change');
+        nameCollectionSelect.trigger('change');
     });
 }
 
 function selectedNameCollection() {
-    return $('#nameCollectionSelect option:selected').val();
+    return $('#nameCollectionSelect').find('option:selected').val();
 }
 
 function saveNameToCollection(name, nameCollection) {
@@ -32,14 +33,6 @@ function removeNameFromCollection(name, nameCollection) {
 
 
 $(document).ready(function () {
-
-    $('#nameCollectionSelect').change(function () {
-        displayNameCollection(selectedNameCollection());
-    }).trigger('change');
-
-    $('#newNameCollection').click(function () {
-        newNameCollection();
-    });
 
     $("#generateNamesForm").submit(function (event) {
         // stop form from submitting normally

@@ -59,6 +59,10 @@ public class Inominax extends Controller {
 
    // Names collections
 
+   public static Result manageNames() {
+      return ok(namesManagement.render());
+   }
+
    public static Result getNameCollection(String nameCollectionName) {
       NameCollection nameCollection = AllNameCollections.findByName(nameCollectionName);
       logger.info("'{}' NameCollection selected", nameCollection);
@@ -69,6 +73,12 @@ public class Inominax extends Controller {
       NameCollection nameCollection = new NameCollection(nameCollectionName);
       AllNameCollections.save(nameCollection);
       logger.info("Name collection '{}' created", nameCollection);
+      return ok();
+   }
+
+   public static Result deleteNameCollection(String nameCollectionName) {
+      AllNameCollections.remove(nameCollectionName);
+      logger.info("'{}' NameCollection deleted", nameCollectionName);
       return ok();
    }
 

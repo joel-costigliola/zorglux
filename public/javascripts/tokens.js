@@ -8,17 +8,19 @@ function newTokenCollection() {
     // TODO check that name is not already used, in that case just select it after notifying user of this existing collection name
     // for that returns an error for the post request
     $.post('/inominax/tokens/' + encodeURIComponent(newTokenCollectionName), function () {
-        $('#tokenCollectionSelect').append('<option value="' + newTokenCollectionName + '" selected="selected">' + newTokenCollectionName + '</option>');
+        var tokenCollectionSelect = $('#tokenCollectionSelect');
+        tokenCollectionSelect.append('<option value="' + newTokenCollectionName + '" selected="selected">' + newTokenCollectionName + '</option>');
         // TODO : sort tokenCollectionSelect options
-        $('#tokenCollectionSelect').trigger('change');
+        tokenCollectionSelect.trigger('change');
     });
 }
 
 function deleteTokenCollection(tokenCollection) {
     if (window.confirm(tokenCollection + " will be deleted.")) {
         $.post('/inominax/tokens/delete/' + encodeURIComponent(tokenCollection), function () {
-            $("#tokenCollectionSelect option[value='" + tokenCollection + "']").remove();
-            $('#tokenCollectionSelect').trigger('change');
+            var tokenCollectionSelect = $("#tokenCollectionSelect");
+            tokenCollectionSelect.find("option[value='" + tokenCollection + "']").remove();
+            tokenCollectionSelect.trigger('change');
         });
     }
 }
@@ -32,21 +34,18 @@ function addTokenToCollection(newToken, tokenCollection) {
 }
 
 function removeTokenFromCollection(token, tokenCollection) {
-    // to play it safe, uncomment 'if'
-    //if (window.confirm("Delete '" + token + "' from " + tokenCollection + " tokens ?")) {
     $.post('/inominax/tokens/' + encodeURIComponent(tokenCollection) + '/delete/' + encodeURIComponent(token), function () {
         $('#tokenCollectionSelect').trigger('change');
     });
-    //}
 }
 
 function selectedTokenCollection() {
-    return $('#tokenCollectionSelect option:selected').val();
+    return $("#tokenCollectionSelect").find('option:selected').val();
 }
 
 $(document).ready(function () {
 
-    $('#tokenCollectionSelect').change(function () {
+    $("#tokenCollectionSelect").change(function () {
         displayTokenCollection(selectedTokenCollection());
     }).trigger('change');
 
