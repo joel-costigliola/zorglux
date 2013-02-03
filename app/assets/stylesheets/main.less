@@ -70,11 +70,11 @@ body {
     ALL: Scroll Theme
    =================== */
 .header-container {
-   border-bottom: 20px solid @menuBackgroundColor;
+   border-bottom: @header-footer-border-size solid @menuBackgroundColor;
 }
 
 .footer-container, .main aside {
-   border-top: 20px solid @menuBackgroundColor;
+   border-top: @header-footer-border-size solid @menuBackgroundColor;
 }
 
 .header-container, .footer-container, .main aside {
@@ -125,7 +125,7 @@ nav a:hover {
 
 .main aside {
    color: @menuColor;
-   padding: 0px 5% 10px;
+   padding: 0px 3% 10px;
 }
 
 .footer-container footer {
@@ -348,7 +348,7 @@ WIDE: Main
 ============ */
    .main article {
       float: left;
-      width: 67%;
+      width: 71%;
    }
 
    .main aside {
@@ -362,7 +362,8 @@ WIDE: Main
    Maximal Width
   =============== */
    .wrapper {
-      width: 1026px; /* 1140px - 10% for margins */
+       /* width: 1026px; 1140px - 10% for margins */
+      width: 80%;
       margin: 0 auto;
    }
 }
