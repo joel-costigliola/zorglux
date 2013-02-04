@@ -61,6 +61,13 @@ $(document).ready(function () {
         addTokenToCollection($('#newToken').val(), selectedTokenCollection());
     });
 
+    $('#newToken').keyup(function(event) {
+        if(keyCode(event) == 13) { //Enter keycode
+            addTokenToCollection($('#newToken').val(), selectedTokenCollection());
+        }
+    });
+
+
     $("#tokenCollection").on('click', ".x", function () {
         var token = this.id.slice(0, -2);
         removeTokenFromCollection(token, selectedTokenCollection());

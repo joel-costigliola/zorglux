@@ -62,8 +62,7 @@ $(document).ready(function () {
     });
 
     $('#newName').keyup(function(event) {
-        var code = (event.keyCode ? event.keyCode : event.which);
-        if(code == 13) { //Enter keycode
+        if(keyCode(event) == 13) { //Enter keycode
             addNameToCollection($('#newName').val(), selectedNameCollection());
         }
     });

@@ -1,3 +1,7 @@
+function keyCode(event) {
+    return (event.keyCode ? event.keyCode : event.which);
+}
+
 $(document).ready(function () {
 
     $("#generateNamesForm").submit(function (event) {
