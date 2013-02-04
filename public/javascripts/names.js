@@ -61,6 +61,24 @@ $(document).ready(function () {
         addNameToCollection($('#newName').val(), selectedNameCollection());
     });
 
+    $('#newName').keyup(function(event) {
+        var code = (event.keyCode ? event.keyCode : event.which);
+        if(code == 13) { //Enter keycode
+            addNameToCollection($('#newName').val(), selectedNameCollection());
+        }
+    });
+
+    $("#nameCollection").on('click', ".deleteName", function () {
+        var name = this.id.slice(0, -2);
+        removeNameFromCollection(name, selectedNameCollection());
+    });
+
+    $("#generatedNames").on('click', ".name", function () {
+        var generatedName = this.textContent;
+        addNameToCollection(generatedName, selectedNameCollection());
+        $(this).remove();
+    });
+
 });
 
 
