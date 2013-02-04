@@ -1,7 +1,6 @@
 @(generatedNames: List[String])
 
 @if(!generatedNames.isEmpty()) {
-   <h2>Generated names</h2>
    @for(name <- generatedNames) {
       <span class="name" title="Click to save to selected name collection">@name</span>
    }

@@ -4,6 +4,22 @@
 
 @main("Inominax - name generator") {
 
+   <h2>Lists of names</h2>
+
+   <div class="inominaxForm">
+      <div>
+         <label for="nameCollectionSelect">Choose list of names</label>
+         <select id="nameCollectionSelect" name="nameCollectionSelect">
+         @for(nameCollectionName <- Inominax.nameCollectionsNames) {
+            <option value="@nameCollectionName">@nameCollectionName</option>
+         }
+         </select>
+         <input type="button" value="new list"  title="create a new list of names" id="newNameCollection">
+      </div>
+   </div>
+
+   <div id="nameCollection" class="nameCollection"></div>
+
    <h2>Names generation parameters</h2>
 
    @form(action = routes.Inominax.generateNames, args = 'class -> "inominaxForm", 'id -> "generateNamesForm") {
@@ -28,22 +44,6 @@
    }
 
    <div id="generatedNames" class="generatedNames"></div>
-
-   <h2>Lists of names</h2>
-
-   <div class="inominaxForm">
-      <div>
-         <label for="nameCollectionSelect">Choose list of names</label>
-         <select id="nameCollectionSelect" name="nameCollectionSelect">
-         @for(nameCollectionName <- Inominax.nameCollectionsNames) {
-            <option value="@nameCollectionName">@nameCollectionName</option>
-         }
-         </select>
-         <input type="button" value="new list"  title="create a new list of names" id="newNameCollection">
-      </div>
-   </div>
-
-   <div id="nameCollection" class="nameCollection"></div>
 
 }
 
