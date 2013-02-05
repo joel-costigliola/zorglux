@@ -3,7 +3,7 @@
 # ~~~~
 
 # Home page
-GET     /                                 controllers.Inominax.index
+GET     /                                 controllers.Inominax.inominax
 
 # Inominax pages : tokens management
 GET     /inominax/tokens                          controllers.Inominax.manageTokens()
@@ -22,7 +22,7 @@ POST    /inominax/names/:nameCollectionName/add/:name     controllers.Inominax.a
 POST    /inominax/names/:nameCollectionName/delete/:name     controllers.Inominax.removeNameFromCollection(name, nameCollectionName)
 
 # Inominax main page
-GET     /inominax                         controllers.Inominax.index()
+GET     /inominax                         controllers.Inominax.inominax()
 POST    /inominax                         controllers.Inominax.generateNames()
 GET     /inominax/:nameCollectionName     controllers.Inominax.getNameCollection(nameCollectionName)
 POST    /inominax/:nameCollectionName     controllers.Inominax.newNameCollection(nameCollectionName)

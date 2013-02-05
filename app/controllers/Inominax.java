@@ -12,7 +12,7 @@ import play.mvc.Result;
 import repositories.AllNameCollections;
 import repositories.AllTokenCollections;
 import views.html.*;
-import views.html.index;
+import views.html.inominax;
 
 import java.util.List;
 import java.util.Set;
@@ -29,19 +29,19 @@ public class Inominax extends Controller {
     */
    private static Form<NameGeneratorParameters> generateNamesForm = form(NameGeneratorParameters.class);
 
-   public static Result index() {
+   public static Result inominax() {
       Form<NameGeneratorParameters> filledForm = generateNamesForm.bindFromRequest();
       if (filledForm.data().isEmpty()) {
          generateNamesForm = filledForm.fill(new NameGeneratorParameters());
       }
-      return ok(index.render(generateNamesForm, EMPTY_LIST));
+      return ok(inominax.render(generateNamesForm, EMPTY_LIST));
    }
 
    public static Result generateNames() {
       Form<NameGeneratorParameters> filledForm = generateNamesForm.bindFromRequest();
 
       if (filledForm.hasErrors()) {
-         return badRequest(index.render(filledForm, EMPTY_LIST));
+         return badRequest(inominax.render(filledForm, EMPTY_LIST));
       }
 
       NameGeneratorParameters nameGeneratorParameters = filledForm.get();
