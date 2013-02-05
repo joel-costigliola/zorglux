@@ -24,9 +24,7 @@ public class Inominax extends Controller {
 
    private static final Logger logger = LoggerFactory.getLogger(Inominax.class);
    private static final List<String> EMPTY_LIST = emptyList();
-   /**
-    * Defines a form wrapping the NameGeneratorParameters class.
-    */
+   // Defines a form wrapping the NameGeneratorParameters class.
    private static Form<NameGeneratorParameters> generateNamesForm = form(NameGeneratorParameters.class);
 
    public static Result inominax() {
@@ -57,95 +55,34 @@ public class Inominax extends Controller {
       return ok(generatedNames.render(newArrayList(names)));
    }
 
-   // Names collections
-
-   public static Result manageNames() {
-      return ok(namesManagement.render());
-   }
-
-   public static Result getNameCollection(String nameCollectionName) {
-      NameCollection nameCollection = AllNameCollections.findByName(nameCollectionName);
-      logger.info("'{}' NameCollection selected", nameCollection);
-      return ok(nameCollectionTemplate.render(nameCollection));
-   }
-
-   public static Result newNameCollection(String nameCollectionName) {
-      NameCollection nameCollection = new NameCollection(nameCollectionName);
-      AllNameCollections.save(nameCollection);
-      logger.info("Name collection '{}' created", nameCollection);
-      return ok();
-   }
-
-   public static Result deleteNameCollection(String nameCollectionName) {
-      AllNameCollections.remove(nameCollectionName);
-      logger.info("'{}' NameCollection deleted", nameCollectionName);
-      return ok();
-   }
-
-   public static Result addNameToCollection(String name, String nameCollectionName) {
-      NameCollection nameCollection = AllNameCollections.findByName(nameCollectionName);
-      nameCollection.addNames(name);
-      AllNameCollections.save(nameCollection);
-      logger.info("'{}' name added to '{}' NameCollection", name, nameCollection);
-      return ok();
-   }
-
-   public static Result removeNameFromCollection(String name, String nameCollectionName) {
-      NameCollection nameCollection = AllNameCollections.findByName(nameCollectionName);
-      nameCollection.removeNames(name);
-      AllNameCollections.save(nameCollection);
-      logger.info("'{}' name removed from '{}' NameCollection", name, nameCollection);
-      return ok();
-   }
-
-   public static List<String> nameCollectionsNames() {
-      return newArrayList(AllNameCollections.findAllNameCollectionsName());
-   }
-
    // Tokens  collections
 
    public static Result getTokenCollection(String tokenCollectionName) {
-      TokenCollection tokenCollection = AllTokenCollections.findByName(tokenCollectionName);
-      logger.info("'{}' TokenCollection selected", tokenCollection);
-      return ok(tokensTemplate.render(tokenCollection));
+      return Tokens.getTokenCollection(tokenCollectionName);
    }
 
-   public static Result newTokenCollection(String tokenCollectionToken) {
-      TokenCollection tokenCollection = new TokenCollection(tokenCollectionToken);
-      AllTokenCollections.save(tokenCollection);
-      logger.info("'{}' TokenCollection created", tokenCollection);
-      return ok();
+   public static Result newTokenCollection(String tokenCollectionName) {
+      return Tokens.newTokenCollection(tokenCollectionName);
    }
 
    public static Result addTokenToCollection(String token, String tokenCollectionName) {
-      TokenCollection tokenCollection = AllTokenCollections.findByName(tokenCollectionName);
-      tokenCollection.addTokens(token);
-      AllTokenCollections.save(tokenCollection);
-      logger.info("'{}' token added to '{}' TokenCollection", token, tokenCollection);
-      return ok();
+      return Tokens.addTokenToCollection(token, tokenCollectionName);
    }
 
    public static Result removeTokenFromCollection(String token, String tokenCollectionName) {
-      TokenCollection tokenCollection = AllTokenCollections.findByName(tokenCollectionName);
-      tokenCollection.removeTokens(token);
-      AllTokenCollections.save(tokenCollection);
-      logger.info("'{}' token removed from '{}' TokenCollection", token, tokenCollection);
-      return ok();
+      return Tokens.removeTokenFromCollection(token, tokenCollectionName);
    }
 
    public static Result deleteTokenCollection(String tokenCollectionName) {
-      AllTokenCollections.remove(tokenCollectionName);
-      logger.info("'{}' TokenCollection deleted", tokenCollectionName);
-      return ok();
+      return Tokens.deleteTokenCollection(tokenCollectionName);
    }
 
    public static Result manageTokens() {
-      logger.info("Managing Token collections ...");
-      return ok(tokensManagement.render());
+      return Tokens.manageTokens();
    }
 
    public static List<String> tokenCollectionsNames() {
-      return newArrayList(AllTokenCollections.findAllTokenCollectionsName());
+      return Tokens.tokenCollectionsNames();
    }
 
 }
