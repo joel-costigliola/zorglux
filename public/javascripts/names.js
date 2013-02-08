@@ -10,7 +10,7 @@ function newNameCollection() {
     $.post('/inominax/names/' + encodeURIComponent(newNameCollectionName), function () {
         var nameCollectionSelect = $('#nameCollectionSelect');
         nameCollectionSelect.append('<option value="' + newNameCollectionName + '" selected="selected">' + newNameCollectionName + '</option>');
-        // TODO : sort nameCollectionSelect options
+        sortSelect("#nameCollectionSelect");
         nameCollectionSelect.trigger('change');
     });
 }
@@ -30,11 +30,12 @@ function renameNameCollection(nameCollection) {
     if (!newNameCollectionName) return;
     // TODO check that name is not already used, in that case just select it after notifying user of this existing collection name
     // for that returns an error for the post request
-    $.post('/inominax/names/' + encodeURIComponent(nameCollection)+ '/rename/' + encodeURIComponent(newNameCollectionName), function () {
+    $.post('/inominax/names/' + encodeURIComponent(nameCollection) + '/rename/' + encodeURIComponent(newNameCollectionName), function () {
         var nameCollectionSelect = $('#nameCollectionSelect');
         var renamedOption = nameCollectionSelect.find("option[value='" + nameCollection + "']");
         renamedOption.val(newNameCollectionName);
         renamedOption.text(newNameCollectionName);
+        sortSelect("#nameCollectionSelect");
         renamedOption.attr('selected', 'selected');
     });
 }
@@ -52,7 +53,6 @@ function removeNameFromCollection(name, nameCollection) {
         $('#nameCollectionSelect').trigger('change');
     });
 }
-
 function selectedNameCollection() {
     return $('#nameCollectionSelect').find('option:selected').val();
 }
@@ -79,8 +79,8 @@ $(document).ready(function () {
         addNameToCollection($('#newName').val(), selectedNameCollection());
     });
 
-    $('#newName').keyup(function(event) {
-        if(keyCode(event) == 13) { //Enter keycode
+    $('#newName').keyup(function (event) {
+        if (keyCode(event) == 13) { //Enter keycode
             addNameToCollection($('#newName').val(), selectedNameCollection());
         }
     });

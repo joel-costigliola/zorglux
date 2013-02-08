@@ -10,7 +10,7 @@ function newTokenCollection() {
     $.post('/inominax/tokens/' + encodeURIComponent(newTokenCollectionName), function () {
         var tokenCollectionSelect = $('#tokenCollectionSelect');
         tokenCollectionSelect.append('<option value="' + newTokenCollectionName + '" selected="selected">' + newTokenCollectionName + '</option>');
-        // TODO : sort tokenCollectionSelect options
+        sortSelect("#tokenCollectionSelect");
         tokenCollectionSelect.trigger('change');
     });
 }
