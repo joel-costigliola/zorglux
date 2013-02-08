@@ -51,7 +51,7 @@ public class Names extends Controller {
       NameCollection nameCollection = AllNameCollections.findByName(nameCollectionName);
       nameCollection.renameTo(newName);
       AllNameCollections.save(nameCollection);
-      logger.info("'{}' NameCollection renamed to {}", nameCollectionName, newName);
+      logger.info("'{}' NameCollection renamed to '{}'", nameCollectionName, newName);
       return ok();
    }
 

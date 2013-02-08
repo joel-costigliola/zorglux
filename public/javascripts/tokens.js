@@ -25,6 +25,22 @@ function deleteTokenCollection(tokenCollection) {
     }
 }
 
+function renameTokenCollection(tokenCollection) {
+    var newTokenCollectionName = window.prompt("Please enter the new name of " + tokenCollection);
+    if (!newTokenCollectionName) return;
+    // TODO check that name is not already used, in that case just select it after notifying user of this existing collection name
+    // for that returns an error for the post request
+    $.post('/inominax/tokens/' + encodeURIComponent(tokenCollection) + '/rename/' + encodeURIComponent(newTokenCollectionName), function () {
+        var tokenCollectionSelect = $('#tokenCollectionSelect');
+        var renamedOption = tokenCollectionSelect.find("option[value='" + tokenCollection + "']");
+        renamedOption.val(newTokenCollectionName);
+        renamedOption.text(newTokenCollectionName);
+        sortSelect("#tokenCollectionSelect");
+        renamedOption.attr('selected', 'selected');
+    });
+}
+
+
 function addTokenToCollection(newToken, tokenCollection) {
     if (newToken) {
         $.post('/inominax/tokens/' + encodeURIComponent(tokenCollection) + '/add/' + encodeURIComponent(newToken), function () {
@@ -55,6 +71,10 @@ $(document).ready(function () {
 
     $('#deleteTokenCollection').click(function () {
         deleteTokenCollection(selectedTokenCollection());
+    });
+
+    $('#renameTokenCollection').click(function () {
+        renameTokenCollection(selectedTokenCollection());
     });
 
     $('#addToken').click(function () {

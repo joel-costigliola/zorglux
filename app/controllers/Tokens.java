@@ -59,6 +59,15 @@ public class Tokens extends Controller {
       return ok();
    }
 
+   public static Result renameTokenCollection(String nameCollectionToken, String newName) {
+      TokenCollection tokenCollection = AllTokenCollections.findByName(nameCollectionToken);
+      tokenCollection.renameTo(newName);
+      AllTokenCollections.save(tokenCollection);
+      logger.info("'{}' TokenCollection renamed to '{}'", nameCollectionToken, newName);
+      return ok();
+   }
+
+
    public static Result manageTokens() {
       logger.info("Managing Token collections ...");
       return ok(tokensManagement.render());
