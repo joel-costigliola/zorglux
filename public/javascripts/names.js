@@ -25,6 +25,20 @@ function deleteNameCollection(nameCollection) {
     }
 }
 
+function renameNameCollection(nameCollection) {
+    var newNameCollectionName = window.prompt("Please enter the new name of " + nameCollection);
+    if (!newNameCollectionName) return;
+    // TODO check that name is not already used, in that case just select it after notifying user of this existing collection name
+    // for that returns an error for the post request
+    $.post('/inominax/names/' + encodeURIComponent(nameCollection)+ '/rename/' + encodeURIComponent(newNameCollectionName), function () {
+        var nameCollectionSelect = $('#nameCollectionSelect');
+        var renamedOption = nameCollectionSelect.find("option[value='" + nameCollection + "']");
+        renamedOption.val(newNameCollectionName);
+        renamedOption.text(newNameCollectionName);
+        renamedOption.attr('selected', 'selected');
+    });
+}
+
 function addNameToCollection(newName, nameCollection) {
     if (newName) {
         $.post('/inominax/names/' + encodeURIComponent(nameCollection) + '/add/' + encodeURIComponent(newName), function () {
@@ -55,6 +69,10 @@ $(document).ready(function () {
 
     $('#deleteNameCollection').click(function () {
         deleteNameCollection(selectedNameCollection());
+    });
+
+    $('#renameNameCollection').click(function () {
+        renameNameCollection(selectedNameCollection());
     });
 
     $('#addName').click(function () {

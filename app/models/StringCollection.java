@@ -16,4 +16,8 @@ public class StringCollection {
       return name;
    }
 
+   public void renameTo(String newName) {
+      this.name =  newName;
+   }
+
 }

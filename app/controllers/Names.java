@@ -47,6 +47,14 @@ public class Names extends Controller {
       return ok();
    }
 
+   public static Result renameNameCollection(String nameCollectionName, String newName) {
+      NameCollection nameCollection = AllNameCollections.findByName(nameCollectionName);
+      nameCollection.renameTo(newName);
+      AllNameCollections.save(nameCollection);
+      logger.info("'{}' NameCollection renamed to {}", nameCollectionName, newName);
+      return ok();
+   }
+
    public static Result addNameToCollection(String name, String nameCollectionName) {
       NameCollection nameCollection = AllNameCollections.findByName(nameCollectionName);
       nameCollection.addNames(name);

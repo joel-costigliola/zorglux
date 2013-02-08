@@ -14,12 +14,13 @@ POST  /inominax/tokens/:tokenCollectionName/add/:token     controllers.Tokens.ad
 POST  /inominax/tokens/:tokenCollectionName/delete/:token  controllers.Tokens.removeTokenFromCollection(token, tokenCollectionName)
 
 # Inominax pages : names management
-GET   /inominax/names                                   controllers.Names.manageNames()
-GET   /inominax/names/:nameCollectionName               controllers.Names.getNameCollection(nameCollectionName)
-POST  /inominax/names/:nameCollectionName               controllers.Names.newNameCollection(nameCollectionName)
-POST  /inominax/names/delete/:nameCollectionName        controllers.Names.deleteNameCollection(nameCollectionName)
-POST  /inominax/names/:nameCollectionName/add/:name     controllers.Names.addNameToCollection(name, nameCollectionName)
-POST  /inominax/names/:nameCollectionName/delete/:name  controllers.Names.removeNameFromCollection(name, nameCollectionName)
+GET   /inominax/names                                       controllers.Names.manageNames()
+GET   /inominax/names/:nameCollectionName                   controllers.Names.getNameCollection(nameCollectionName)
+POST  /inominax/names/:nameCollectionName                   controllers.Names.newNameCollection(nameCollectionName)
+POST  /inominax/names/delete/:nameCollectionName            controllers.Names.deleteNameCollection(nameCollectionName)
+POST  /inominax/names/:nameCollectionName/rename/:newName   controllers.Names.renameNameCollection(nameCollectionName, newName)
+POST  /inominax/names/:nameCollectionName/add/:name         controllers.Names.addNameToCollection(name, nameCollectionName)
+POST  /inominax/names/:nameCollectionName/delete/:name      controllers.Names.removeNameFromCollection(name, nameCollectionName)
 
 # Inominax main page
 GET   /inominax                         controllers.Inominax.inominax()
